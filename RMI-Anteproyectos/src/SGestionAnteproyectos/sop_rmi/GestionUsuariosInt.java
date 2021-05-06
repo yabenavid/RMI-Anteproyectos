@@ -12,9 +12,9 @@ import java.rmi.Remote;
  *
  * @author YENNYFER, YEFERSON
  */
-public interface GestionUsuariosInt extends Remote{
-    
+public interface GestionUsuariosInt extends Remote {
+
     public boolean registrarUsuario(Usuario objUsuario);
-    
+
     public Usuario verificarCredencial(String prmUsuario, String prmContrasena);
 }

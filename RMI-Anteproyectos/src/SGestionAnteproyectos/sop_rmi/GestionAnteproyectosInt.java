@@ -9,7 +9,6 @@ import SSeguimientoAnteproyectos.dto.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  *
@@ -26,7 +25,6 @@ public interface GestionAnteproyectosInt extends Remote{
     
     public ArrayList<Integer> consultarConceptos(int prmCodAnteproyecto);
         
-    
     public ArrayList<FormatoTIA> consultarFormatosTIA() throws RemoteException;
     public ArrayList<FormatoTIB> consultarFormatosTIB() throws RemoteException;
     public ArrayList<FormatoTIC> consultarFormatosTIC() throws RemoteException;

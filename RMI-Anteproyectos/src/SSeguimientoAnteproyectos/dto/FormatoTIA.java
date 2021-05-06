@@ -12,6 +12,7 @@ import SGestionAnteproyectos.dto.*;
  * @author YENNYFER,YEFERSON
  */
 public class FormatoTIA {
+
     private int codigoAnteproyecto;
     private String nombrePrograma;
     private String tituloAnteproyecto;
@@ -23,7 +24,7 @@ public class FormatoTIA {
     private String nombreCoDirector;
     private String obetivosAnteproyecto;
 
-    public FormatoTIA() {   
+    public FormatoTIA() {
         this.codigoAnteproyecto = -1;
         this.nombrePrograma = "";
         this.tituloAnteproyecto = "";
@@ -128,5 +129,5 @@ public class FormatoTIA {
     public void setObetivosAnteproyecto(String obetivosAnteproyecto) {
         this.obetivosAnteproyecto = obetivosAnteproyecto;
     }
-    
+
 }

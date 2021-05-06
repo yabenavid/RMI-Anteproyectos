@@ -6,7 +6,7 @@
 package SGestionAnteproyectos.sop_rmi;
 
 import SSeguimientoAnteproyectos.dto.*;
-import SSeguimientoAnteproyectos.sop_rmi.SegimientoAnteproyectosImpl;
+import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosImpl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -15,26 +15,60 @@ import java.util.ArrayList;
  *
  * @author YENNYFER, YEFERSON
  */
-public class GestionAnteproyectosImpl extends UnicastRemoteObject implements GestionAnteproyectosInt{
-    
-    private static SegimientoAnteproyectosImpl objSeguimiento;
+public class GestionAnteproyectosImpl extends UnicastRemoteObject implements GestionAnteproyectosInt {
+
+    private static SeguimientoAnteproyectosImpl objSeguimiento;
     private ArrayList<FormatoTIA> formatosTIA;
     private ArrayList<FormatoTIB> formatosTIB;
     private ArrayList<FormatoTIC> formatosTIC;
     private ArrayList<FormatoTID> formatosTID;
-    private static int codigo = 0;
     
+    private int anioVigente = 2021;
+    private int periodoActual = 1;
+    private int numeroSecuencial1 = 0, numeroSecuencial2 = 0, numeroSecuencial3 = 0;
+
+
     public GestionAnteproyectosImpl() throws RemoteException {
-		super();
-		formatosTIA = new ArrayList();
-                formatosTIB = new ArrayList();
-                formatosTIC = new ArrayList();
-                formatosTID = new ArrayList();
-	}
+        super();
+        formatosTIA = new ArrayList<>();
+        formatosTIB = new ArrayList<>();
+        formatosTIC = new ArrayList<>();
+        formatosTID = new ArrayList<>();
+    }
+
     @Override
     public int solicitarCodigo() {
-        codigo = codigo + 10;
-        return codigo;
+        System.out.println("\n\n Invocando a solicitar codigo");
+        String cod;
+        int resultado;
+        cod = "" + anioVigente + periodoActual + numeroSecuencial3 + numeroSecuencial2 + numeroSecuencial1;
+
+        // Actualizando la secuencia
+        actualizarNumerosSecuenciales();
+        
+        resultado = Integer.parseInt(cod);
+        return resultado;
+    }
+    
+    private void actualizarNumerosSecuenciales(){
+        if (numeroSecuencial1 == 9) {
+            if (numeroSecuencial2 == 9) {
+                if (numeroSecuencial3 == 9) {
+                    numeroSecuencial1 = 0;
+                    numeroSecuencial2 = 0;
+                    numeroSecuencial3 = 0;
+                } else {
+                    numeroSecuencial2 = 0;
+                    numeroSecuencial1 = 0;
+                    numeroSecuencial3 = numeroSecuencial3 + 1;
+                }
+            } else {
+                numeroSecuencial1 = 0;
+                numeroSecuencial2 = numeroSecuencial2 + 1;
+            }
+        } else {
+            numeroSecuencial1 = numeroSecuencial1 + 1;
+        }
     }
 
     @Override

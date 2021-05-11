@@ -20,15 +20,23 @@ import java.util.ArrayList;
  */
 public class UtilidadesArchivosTxt {
 
-    public static ArrayList<String> leerArchivo() {
+    public static String leerArchivo(String nombreArchivo) {
         String varLinea;
-        ArrayList<String> varLineas = new ArrayList<>();
+        String varLineas ="";
+        File varArchivo = new File(nombreArchivo);
+         if (varArchivo.exists() == false) {
+            try {
+                varArchivo.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
-            FileReader varLector = new FileReader("ArchivoEntrada.txt");
+            FileReader varLector = new FileReader(nombreArchivo);
             BufferedReader varAlmacenamiento = new BufferedReader(varLector);
 
             while ((varLinea = varAlmacenamiento.readLine()) != null) {
-                varLineas.add(varLinea);
+                varLineas += varLinea;
             }
 
             varAlmacenamiento.close();
@@ -36,14 +44,11 @@ public class UtilidadesArchivosTxt {
         } catch (FileNotFoundException e) {
 
             System.out.println("\nThe file is empty or doesn't exist. Check your content.");
-            System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(0);
         }
         if (varLineas.isEmpty()) {
             System.out.println("\nThe file is empty or doesn't exist. Check your content.");
-            System.exit(0);
         }
         return varLineas;
     }
@@ -68,7 +73,7 @@ public class UtilidadesArchivosTxt {
         return varLinea;
     }
 
-    public void escribirArchivo(String nombreArchivo, String prmTexto) {
+    public static void escribirArchivo(String nombreArchivo, String prmTexto) {
         File varArchivo = new File(nombreArchivo + ".txt");
         FileWriter varEscritor;
         BufferedWriter varBufferEscritor;

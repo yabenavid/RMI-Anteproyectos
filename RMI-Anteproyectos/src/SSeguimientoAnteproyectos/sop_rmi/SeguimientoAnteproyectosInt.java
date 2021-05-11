@@ -13,9 +13,7 @@ import java.rmi.Remote;
  */
 public interface SeguimientoAnteproyectosInt extends Remote{
     
-    public boolean almacenarFormatoTIA(FormatoTIA objFormatoTIA);
-    public boolean almacenarFormatoTIB(FormatoTIB objFormatoTIB);
-    public boolean almacenarFormatoTIC(FormatoTIC objFormatoTIC);
+    public boolean almacenarFormatos(FormatoTIA objFormatoTIA,FormatoTIB objFormatoTIB,FormatoTIC objFormatoTIC);
     public boolean almacenarResolucion(Resolucion objResolucion);
     
     public String consultarFormatos();

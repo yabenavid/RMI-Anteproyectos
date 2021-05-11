@@ -115,7 +115,7 @@ public class Administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarDirectorActionPerformed
-       RegistrarDirector director  = new RegistrarDirector();
+       RegistrarUsuarios director  = new RegistrarUsuarios();
        escritorio.add(director);
        director.show();
     }//GEN-LAST:event_RegistrarDirectorActionPerformed

@@ -32,20 +32,15 @@ public class jfrmAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        btnRegistrarDirector = new javax.swing.JPanel();
+        btnRegistrarUsuarios = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnRegistrarEvaluador = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnRegistraJefeDto = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        btnRegistrarCoordinador = new javax.swing.JPanel();
+        btnConsultarUsuarios = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        btnListar = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         pnlPrincipal = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -56,50 +51,27 @@ public class jfrmAdministrador extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 51, 204));
         jPanel2.setPreferredSize(new java.awt.Dimension(232, 498));
 
-        btnRegistrarDirector.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRegistrarUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarDirectorMouseClicked(evt);
+                btnRegistrarUsuariosMouseClicked(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Registrar Director");
+        jLabel1.setText("Registrar Usuarios");
 
-        javax.swing.GroupLayout btnRegistrarDirectorLayout = new javax.swing.GroupLayout(btnRegistrarDirector);
-        btnRegistrarDirector.setLayout(btnRegistrarDirectorLayout);
-        btnRegistrarDirectorLayout.setHorizontalGroup(
-            btnRegistrarDirectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnRegistrarDirectorLayout.createSequentialGroup()
+        javax.swing.GroupLayout btnRegistrarUsuariosLayout = new javax.swing.GroupLayout(btnRegistrarUsuarios);
+        btnRegistrarUsuarios.setLayout(btnRegistrarUsuariosLayout);
+        btnRegistrarUsuariosLayout.setHorizontalGroup(
+            btnRegistrarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnRegistrarUsuariosLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        btnRegistrarDirectorLayout.setVerticalGroup(
-            btnRegistrarDirectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        btnRegistrarUsuariosLayout.setVerticalGroup(
+            btnRegistrarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-        );
-
-        btnRegistrarEvaluador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarEvaluadorMouseClicked(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Registrar Evaluador");
-
-        javax.swing.GroupLayout btnRegistrarEvaluadorLayout = new javax.swing.GroupLayout(btnRegistrarEvaluador);
-        btnRegistrarEvaluador.setLayout(btnRegistrarEvaluadorLayout);
-        btnRegistrarEvaluadorLayout.setHorizontalGroup(
-            btnRegistrarEvaluadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnRegistrarEvaluadorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        btnRegistrarEvaluadorLayout.setVerticalGroup(
-            btnRegistrarEvaluadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -129,87 +101,38 @@ public class jfrmAdministrador extends javax.swing.JFrame {
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\YENNYFER\\Documents\\NetBeansProjects\\RMI-Anteproyectos\\RMI-Anteproyectos\\src\\cliente\\presentacion\\imgs\\admin_person_user_man_2839.png")); // NOI18N
-
-        btnRegistraJefeDto.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnConsultarUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistraJefeDtoMouseClicked(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Registrar Jefe Departamento");
-
-        javax.swing.GroupLayout btnRegistraJefeDtoLayout = new javax.swing.GroupLayout(btnRegistraJefeDto);
-        btnRegistraJefeDto.setLayout(btnRegistraJefeDtoLayout);
-        btnRegistraJefeDtoLayout.setHorizontalGroup(
-            btnRegistraJefeDtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnRegistraJefeDtoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        btnRegistraJefeDtoLayout.setVerticalGroup(
-            btnRegistraJefeDtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-        );
-
-        btnRegistrarCoordinador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarCoordinadorMouseClicked(evt);
+                btnConsultarUsuariosMouseClicked(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("Registrar Coordinador");
+        jLabel7.setText("Consultar Usuarios");
 
-        javax.swing.GroupLayout btnRegistrarCoordinadorLayout = new javax.swing.GroupLayout(btnRegistrarCoordinador);
-        btnRegistrarCoordinador.setLayout(btnRegistrarCoordinadorLayout);
-        btnRegistrarCoordinadorLayout.setHorizontalGroup(
-            btnRegistrarCoordinadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnRegistrarCoordinadorLayout.createSequentialGroup()
+        javax.swing.GroupLayout btnConsultarUsuariosLayout = new javax.swing.GroupLayout(btnConsultarUsuarios);
+        btnConsultarUsuarios.setLayout(btnConsultarUsuariosLayout);
+        btnConsultarUsuariosLayout.setHorizontalGroup(
+            btnConsultarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnConsultarUsuariosLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
-        btnRegistrarCoordinadorLayout.setVerticalGroup(
-            btnRegistrarCoordinadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        btnConsultarUsuariosLayout.setVerticalGroup(
+            btnConsultarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
-        btnListar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnListarMouseClicked(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Llistar");
-
-        javax.swing.GroupLayout btnListarLayout = new javax.swing.GroupLayout(btnListar);
-        btnListar.setLayout(btnListarLayout);
-        btnListarLayout.setHorizontalGroup(
-            btnListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnListarLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        btnListarLayout.setVerticalGroup(
-            btnListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/director.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRegistrarEvaluador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRegistrarDirector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRegistraJefeDto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRegistrarCoordinador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRegistrarUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnConsultarUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -217,29 +140,30 @@ public class jfrmAdministrador extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(13, 13, 13)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistrarDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistrarEvaluador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistraJefeDto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistrarCoordinador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)))
+                .addGap(12, 12, 12)
+                .addComponent(btnRegistrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConsultarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
 
         pnlPrincipal.setBackground(new java.awt.Color(255, 255, 255));
@@ -295,31 +219,18 @@ public class jfrmAdministrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarDirectorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarDirectorMouseClicked
+    private void btnRegistrarUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarUsuariosMouseClicked
 
         pnlPrincipal.removeAll();
         pnlPrincipal.repaint();
-        RegistrarDirector registrar = new RegistrarDirector();
+        RegistrarUsuarios registrar = new RegistrarUsuarios();
         pnlPrincipal.add(registrar);
         Dimension desktopSize = pnlPrincipal.getSize();
         Dimension FrameSize = registrar.getSize();
         registrar.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
       
         registrar.show();
-    }//GEN-LAST:event_btnRegistrarDirectorMouseClicked
-
-    private void btnRegistrarEvaluadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarEvaluadorMouseClicked
-
-        pnlPrincipal.removeAll();
-        pnlPrincipal.repaint();
-        RegistrarEvaluador formato = new RegistrarEvaluador();
-        pnlPrincipal.add(formato);
-        Dimension desktopSize = pnlPrincipal.getSize();
-        Dimension FrameSize = formato.getSize();
-        formato.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-      
-        formato.show();
-    }//GEN-LAST:event_btnRegistrarEvaluadorMouseClicked
+    }//GEN-LAST:event_btnRegistrarUsuariosMouseClicked
 
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         // TODO add your handling code here:
@@ -327,33 +238,17 @@ public class jfrmAdministrador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirMouseClicked
 
-    private void btnRegistraJefeDtoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraJefeDtoMouseClicked
-        pnlPrincipal.removeAll();
-        pnlPrincipal.repaint();
-        RegistrarJefeDepto formato = new RegistrarJefeDepto();
-        pnlPrincipal.add(formato);
-        Dimension desktopSize = pnlPrincipal.getSize();
-        Dimension FrameSize = formato.getSize();
-        formato.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-      
-        formato.show();
-    }//GEN-LAST:event_btnRegistraJefeDtoMouseClicked
-
-    private void btnRegistrarCoordinadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarCoordinadorMouseClicked
+    private void btnConsultarUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarUsuariosMouseClicked
        pnlPrincipal.removeAll();
         pnlPrincipal.repaint();
-        RegistrarCoordinador formato = new RegistrarCoordinador();
+        ConsultarUsuarios formato = new ConsultarUsuarios();
         pnlPrincipal.add(formato);
         Dimension desktopSize = pnlPrincipal.getSize();
         Dimension FrameSize = formato.getSize();
         formato.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
       
         formato.show();
-    }//GEN-LAST:event_btnRegistrarCoordinadorMouseClicked
-
-    private void btnListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarMouseClicked
+    }//GEN-LAST:event_btnConsultarUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -391,11 +286,8 @@ public class jfrmAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnListar;
-    private javax.swing.JPanel btnRegistraJefeDto;
-    private javax.swing.JPanel btnRegistrarCoordinador;
-    private javax.swing.JPanel btnRegistrarDirector;
-    private javax.swing.JPanel btnRegistrarEvaluador;
+    private javax.swing.JPanel btnConsultarUsuarios;
+    private javax.swing.JPanel btnRegistrarUsuarios;
     private javax.swing.JPanel btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -404,9 +296,7 @@ public class jfrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel pnlPrincipal;

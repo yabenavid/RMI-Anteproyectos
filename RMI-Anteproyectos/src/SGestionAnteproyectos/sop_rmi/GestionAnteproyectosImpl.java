@@ -10,6 +10,8 @@ import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosImpl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import SGestionAnteproyectos.utilidades.UtilidadesRegistroC;
+import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
 
 /**
  *
@@ -17,7 +19,7 @@ import java.util.ArrayList;
  */
 public class GestionAnteproyectosImpl extends UnicastRemoteObject implements GestionAnteproyectosInt {
 
-    private static SeguimientoAnteproyectosImpl objSeguimiento;
+    private static SeguimientoAnteproyectosInt objSeguimiento;
     private ArrayList<FormatoTIA> formatosTIA;
     private ArrayList<FormatoTIB> formatosTIB;
     private ArrayList<FormatoTIC> formatosTIC;
@@ -164,4 +166,10 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
         System.out.println("\n\n Invocando Consultar Formato TI-D.");
         return formatosTID;
     }
+    
+    public void consultarReferenciaRemota(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
+		System.out.println(" ");
+		System.out.println("Desde consultarReferenciaRemotaDeNotificacion()...");
+		this.objSeguimiento = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoNotificacion");
+	}
 }

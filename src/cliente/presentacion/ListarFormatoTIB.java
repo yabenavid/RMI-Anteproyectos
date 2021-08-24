@@ -5,13 +5,16 @@
  */
 package cliente.presentacion;
 
+import SGestionAnteproyectos.dto.FormatoTIA;
 import SGestionAnteproyectos.dto.FormatoTIB;
 import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
+import static cliente.presentacion.RegistrarFormatoTIB.codigosAnteproyectos;
 import cliente.utilidades.UtilidadesGenerales;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -23,20 +26,43 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
 
     private GestionAnteproyectosInt objGestionAnteproyectos;
     private UtilidadesGenerales utilidadesGenerales;
-    private ArrayList<FormatoTIB> formatos;
+    private ArrayList<FormatoTIB> formatosTIBs;
+    private ArrayList<Integer> codigoAnteproyectos;
+    
+      private final int identificacionEvaluador;
     
     /**
      * Creates new form ListarFormatoTIB
      */
-    public ListarFormatoTIB(GestionAnteproyectosInt objGestionAnteproyectos) {
+    public ListarFormatoTIB(GestionAnteproyectosInt objGestionAnteproyectos, int identificacionEvaluador) throws RemoteException{
         this.objGestionAnteproyectos = objGestionAnteproyectos;
         utilidadesGenerales = new UtilidadesGenerales();
-        formatos = new ArrayList<>();
+        this.formatosTIBs = new ArrayList<>();
+        this.codigoAnteproyectos = new ArrayList<>();
+        this.identificacionEvaluador = identificacionEvaluador;
         initComponents();
+        consultarCodigosAnteproyectos();
         inicializarTablaFormatosTIB();
         llenarTablaFormatosTIB();
     }
-    
+     private void consultarCodigosAnteproyectos() throws RemoteException {
+
+        ArrayList<FormatoTIA> objFormatos;
+        objFormatos = objGestionAnteproyectos.consultarFormatosTIA();
+
+        if (!objFormatos.isEmpty()) {
+
+            for (int i = 0; i < objFormatos.size(); i++) {
+                if (objFormatos.get(i).getIdentificacionEvaluador1() == identificacionEvaluador
+                        || objFormatos.get(i).getIdentificacionEvaluador2() == identificacionEvaluador) {
+                   codigoAnteproyectos.add(objFormatos.get(i).getCodigoAnteproyecto());
+                } 
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Evaluador registrado NO cuenta con Anteproyectos asignados", "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }
+    }
     private void inicializarTablaFormatosTIB(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Código Anteproyecto");
@@ -51,38 +77,25 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
     DefaultTableModel model = (DefaultTableModel)this.jTable1.getModel();
     utilidadesGenerales.limpiarTabla(jTable1);
         try {
-            this.formatos = objGestionAnteproyectos.consultarFormatosTIB();
+            this.formatosTIBs = objGestionAnteproyectos.consultarFormatosTIB();
         } catch (RemoteException ex) {
             Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-        for (int i = 0; i <formatos.size(); i++) {
-            FormatoTIB objFormatoTIB = formatos.get(i);
+        if(!formatosTIBs.isEmpty() && codigoAnteproyectos.size() > 0){
+        for (int i = 0; i <codigosAnteproyectos.size(); i++) {
+           
+            if(codigoAnteproyectos.get(i).equals(formatosTIBs.get(i).getCodigoAnteproyecto())){
+            FormatoTIB objFormatoTIB = formatosTIBs.get(i);
             String[] fila = {String.valueOf(objFormatoTIB.getCodigoAnteproyecto()),String.valueOf(objFormatoTIB.getConcepto()),objFormatoTIB.getObservaciones(),objFormatoTIB.getFechaEvaluacion(),objFormatoTIB.getNombreEvaluador() + ""};
             model.addRow(fila);
+            }
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encuetran formatos TIB Registrados", "Avertencia", JOptionPane.INFORMATION_MESSAGE);  
+           this.dispose();
         }
     }
-    
-    private void consultarCodigosAnteproyectos() throws RemoteException{
-
-//        ArrayList<FormatoTIA> objFormatos;
-//        objFormatos = objAnteproyectosInt.consultarFormatosTIA();
-//        
-//        if(!objFormatos.isEmpty()){
-//                   
-//            for (int i=0; i<objFormatos.size(); i++){
-//                if(objFormatos.get(i).getIdentificacionEvaluador1() == identificacionEvaluador ||
-//                        objFormatos.get(i).getIdentificacionEvaluador2() == identificacionEvaluador){
-//                cbxCodigoAnteproyectos.addItem(String.valueOf(objFormatos.get(i).getCodigoAnteproyecto()));
-//                }
-//            }
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Usuario registrado NO cuenta con Anteproyectos asignados", "Error", JOptionPane.ERROR_MESSAGE);
-//            this.dispose();
-//        }
-    }
-    
-    
+      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,10 +111,15 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setBorder(null);
+        setTitle("Anteproyectos Asignados");
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Lista de todos los anteproyectos");
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setText("Lista de todos los anteproyectos Asignados");
 
+        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -119,23 +137,23 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(188, 188, 188)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(125, 125, 125))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

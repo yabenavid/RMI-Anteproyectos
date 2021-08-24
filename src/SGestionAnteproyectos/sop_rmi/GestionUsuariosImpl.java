@@ -5,6 +5,7 @@
  */
 package SGestionAnteproyectos.sop_rmi;
 
+import SGestionAnteproyectos.dto.RolEnum;
 import SGestionAnteproyectos.dto.Usuario;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
@@ -56,7 +57,23 @@ public class GestionUsuariosImpl extends UnicastRemoteObject implements GestionU
     }
     @Override
     public ArrayList<Usuario> listarUsuarios()throws RemoteException{
+        System.out.println("\n\n Invocando a listar usuarios");
         return usuarios;
+    }
+    
+    @Override
+    public void actualizarUsuarios (Usuario objUsuario) throws  RemoteException{
+         System.out.println("\n\n Invocando a actualizar usuario");
+         for (int i =0; i<usuarios.size(); i++){
+             if(objUsuario.getId() == usuarios.get(i).getId()){
+                 usuarios.get(i).setId(objUsuario.getId());
+                 usuarios.get(i).setNombre(objUsuario.getNombre());
+                 usuarios.get(i).setRol(RolEnum.valueOf(objUsuario.getNombre()));
+                 usuarios.get(i).setDepartamento(objUsuario.getDepartamento());
+                 usuarios.get(i).setUsuario(objUsuario.getUsuario());
+                 usuarios.get(i).setContrasena(objUsuario.getContrasena());
+             }
+         }
     }
 
 }

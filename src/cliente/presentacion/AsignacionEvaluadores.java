@@ -36,6 +36,8 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
     public AsignacionEvaluadores(GestionAnteproyectosInt objGestionAnteproyectosInt, GestionUsuariosInt objGestionUsuariosInt) throws RemoteException {
         this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
         this.objGestionUsuariosInt = objGestionUsuariosInt;
+        this.utilidadesGenerales = new UtilidadesGenerales();
+        
         initComponents();
         
         inicializarTablaAnteproyectos();
@@ -114,64 +116,61 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(132, 132, 132))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3)
+                        .addGap(48, 48, 48)
+                        .addComponent(txtIndentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(btnGuadar))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtIndentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCodigoAnteproyecto)))
-                                .addGap(22, 22, 22)))))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuadar)))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(106, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
                     .addComponent(txtIndentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(btnGuadar)
-                .addGap(27, 27, 27))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuadar))
+                .addGap(47, 47, 47))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(59, 59, 59)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(314, Short.MAX_VALUE)))
+                    .addContainerGap(295, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,7 +181,9 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -209,7 +210,7 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
                     }
                     
                 }else{
-                    JOptionPane.showMessageDialog(null, "El código del Anteproyecto ingresada no está Regitrado", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El código del Anteproyecto ingresado no está Regitrado", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
             }else{
@@ -251,21 +252,19 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
         model.addColumn("Identificación");
         model.addColumn("Nombre");
         model.addColumn("Departamento");      
-        this.tblAnteproyectos.setModel(model);
+        this.tblEvaluadores.setModel(model);
     }
    
    private void llenarTablaAnteproyectos() throws RemoteException{
         
     DefaultTableModel model = (DefaultTableModel)this.tblAnteproyectos.getModel();
     utilidadesGenerales.limpiarTabla(tblAnteproyectos);
-    formatoTIAs.clear();
     this.formatoTIAs = objGestionAnteproyectosInt.consultarFormatosTIA();
     
         for (int i = 0; i <formatoTIAs.size(); i++) {
             if(formatoTIAs.get(i).getIdentificacionEvaluador1() != 1 || formatoTIAs.get(i).getIdentificacionEvaluador2() !=1 ){
             FormatoTIA objFormatoTIA = formatoTIAs.get(i);
-            String[] fila = {String.valueOf(objFormatoTIA.getCodigoAnteproyecto()),objFormatoTIA.getNombrePrograma(),objFormatoTIA.getTituloAnteproyecto() +
-                    objFormatoTIA.getIdentificacionEvaluador1()+objFormatoTIA.getIdentificacionEvaluador2() + ""};
+            String[] fila = {String.valueOf(objFormatoTIA.getCodigoAnteproyecto()),objFormatoTIA.getTituloAnteproyecto(),objFormatoTIA.getNombrePrograma(),String.valueOf(objFormatoTIA.getIdentificacionEvaluador1()), objFormatoTIA.getIdentificacionEvaluador2() + ""};
             model.addRow(fila);
             }
         }
@@ -274,7 +273,7 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
         
     DefaultTableModel model = (DefaultTableModel)this.tblEvaluadores.getModel();
     utilidadesGenerales.limpiarTabla(tblEvaluadores);
-    usuarios.clear();
+    //usuarios.clear();
     this.usuarios = objGestionUsuariosInt.listarUsuarios();
     
         for (int i = 0; i <usuarios.size(); i++) {

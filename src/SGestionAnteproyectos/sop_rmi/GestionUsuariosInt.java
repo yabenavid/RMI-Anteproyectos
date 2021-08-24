@@ -21,4 +21,6 @@ public interface GestionUsuariosInt extends Remote {
     public Usuario verificarCredencial(String prmUsuario, String prmContrasena)throws RemoteException;
     
     public ArrayList<Usuario> listarUsuarios()throws RemoteException;
+    
+    public void actualizarUsuarios (Usuario usuario) throws  RemoteException;
 }

@@ -82,7 +82,7 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
                             .addComponent(txtCodigoAnteproyecto))))
                 .addGap(67, 67, 67))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 201, Short.MAX_VALUE)
+                .addGap(0, 181, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(194, 194, 194))
         );
@@ -107,9 +107,9 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addGap(36, 36, 36)
                         .addComponent(jLabel3)))
-                .addGap(61, 61, 61)
+                .addGap(59, 59, 59)
                 .addComponent(btnRemitir)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

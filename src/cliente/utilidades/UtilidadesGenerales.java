@@ -45,4 +45,10 @@ public class UtilidadesGenerales {
 		return false;
 	}
      }
+     public void verificarSoloNumeros(java.awt.event.KeyEvent evt ){
+          char c = evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+        }
+     }
 }

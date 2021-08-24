@@ -23,22 +23,22 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     /**
      * Creates new form RegistrarFormatoTIB
      */
-    
-   private final GestionAnteproyectosInt objAnteproyectosInt;
-   private final int identificacionEvaluador;
-   private static ArrayList<Integer> codigosAnteproyectos;
-   
-      public RegistrarFormatoTIB(GestionAnteproyectosInt objGestionAnteproyectosInt, int identificacionEvaluador) throws RemoteException {
+    private final GestionAnteproyectosInt objAnteproyectosInt;
+    private final int identificacionEvaluador;
+    public static ArrayList<Integer> codigosAnteproyectos;
+
+    public RegistrarFormatoTIB(GestionAnteproyectosInt objGestionAnteproyectosInt, int identificacionEvaluador) throws RemoteException {
         this.objAnteproyectosInt = objGestionAnteproyectosInt;
         this.identificacionEvaluador = identificacionEvaluador;
-        this.codigosAnteproyectos = new ArrayList<Integer>();
+        codigosAnteproyectos = new ArrayList<>();
         initComponents();
-      
+
         dtcFechaEvalucion.setDateFormatString("dd/MM/yyyy");
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
-        
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+
         consultarCodigosAnteproyectos();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +48,8 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jScrollBar1 = new javax.swing.JScrollBar();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,15 +57,17 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtConcepto = new javax.swing.JTextField();
-        txtObservaciones = new javax.swing.JTextField();
         txtNombreEvaluador = new javax.swing.JTextField();
-        btnLimpiar = new javax.swing.JButton();
         bntGuardar = new javax.swing.JButton();
         dtcFechaEvalucion = new com.toedter.calendar.JDateChooser();
         cbxCodigoAnteproyectos = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtObservaciones = new javax.swing.JTextArea();
+        jSpinnerConceptos = new javax.swing.JSpinner();
+        btnLimpiar = new javax.swing.JButton();
 
         setBorder(null);
+        setTitle("Registro");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -85,15 +89,7 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Nombre del Evaluador:");
 
-        btnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/icons8_ccleaner_32px.png"))); // NOI18N
-        btnLimpiar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
+        txtNombreEvaluador.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         bntGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/guardar2.png"))); // NOI18N
         bntGuardar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -103,74 +99,95 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
             }
         });
 
+        cbxCodigoAnteproyectos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        txtObservaciones.setColumns(20);
+        txtObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txtObservaciones.setRows(5);
+        jScrollPane1.setViewportView(txtObservaciones);
+
+        jSpinnerConceptos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1, 1));
+
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/icons8_ccleaner_32px.png"))); // NOI18N
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(193, 193, 193))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(83, 83, 83)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxCodigoAnteproyectos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtConcepto)
-                            .addComponent(txtObservaciones)
-                            .addComponent(dtcFechaEvalucion, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(txtNombreEvaluador)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSpinnerConceptos, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNombreEvaluador)
+                            .addComponent(cbxCodigoAnteproyectos, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dtcFechaEvalucion, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))))
                 .addGap(27, 27, 27))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jLabel1)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(58, 58, 58)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbxCodigoAnteproyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(dtcFechaEvalucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtNombreEvaluador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cbxCodigoAnteproyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinnerConceptos, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtNombreEvaluador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(dtcFechaEvalucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bntGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLimpiar))
-                .addGap(63, 63, 63))
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,54 +196,55 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void consultarCodigosAnteproyectos() throws RemoteException{
+    private void consultarCodigosAnteproyectos() throws RemoteException {
 
         ArrayList<FormatoTIA> objFormatos;
         objFormatos = objAnteproyectosInt.consultarFormatosTIA();
-        
-        if(!objFormatos.isEmpty()){
-                   
-            for (int i=0; i<objFormatos.size(); i++){
-                if(objFormatos.get(i).getIdentificacionEvaluador1() == identificacionEvaluador ||
-                        objFormatos.get(i).getIdentificacionEvaluador2() == identificacionEvaluador){
+
+        if (!objFormatos.isEmpty()) {
+
+            for (int i = 0; i < objFormatos.size(); i++) {
+                if (objFormatos.get(i).getIdentificacionEvaluador1() == identificacionEvaluador
+                        || objFormatos.get(i).getIdentificacionEvaluador2() == identificacionEvaluador) {
                     cbxCodigoAnteproyectos.addItem(String.valueOf(objFormatos.get(i).getCodigoAnteproyecto()));
-                    
-                }
+                    codigosAnteproyectos.add(objFormatos.get(i).getCodigoAnteproyecto());
+                } 
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuario registrado NO cuenta con Anteproyectos asignados", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Evaluador registrado NO cuenta con Anteproyectos asignados", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
         }
     }
     private void bntGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGuardarActionPerformed
-        
+
         if (cbxCodigoAnteproyectos.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Por favor seleccione un Codigo de anteproyecto");
         } else {
-            if (!txtConcepto.getText().isEmpty()) {
+            if (!jSpinnerConceptos.getValue().equals("")) {
                 if (!txtObservaciones.getText().isEmpty()) {
-                    if(!txtNombreEvaluador.getText().isEmpty()){
-                        FormatoTIB objFormatosTIB = new FormatoTIB(); 
+                    if (!txtNombreEvaluador.getText().isEmpty()) {
+                        FormatoTIB objFormatosTIB = new FormatoTIB();
                         objFormatosTIB.setCodigoAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()));
-                        objFormatosTIB.setConcepto(Integer.parseInt(txtConcepto.getText()));
+                        objFormatosTIB.setConcepto(Integer.parseInt(jSpinnerConceptos.getValue().toString()));
                         objFormatosTIB.setObservaciones(txtObservaciones.getText());
                         objFormatosTIB.setFechaEvaluacion(String.valueOf(dtcFechaEvalucion.getDate()));
                         objFormatosTIB.setNombreEvaluador(txtNombreEvaluador.getText());
                         try {
 
-                            if(objAnteproyectosInt.remitirFormatoTIB(objFormatosTIB)){
+                            if (objAnteproyectosInt.remitirFormatoTIB(objFormatosTIB)) {
                                 JOptionPane.showMessageDialog(null, "Formato TIB registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-                            }
-                            else{
+                                
+                                btnLimpiar.doClick();
+                            } else {
                                 JOptionPane.showMessageDialog(null, "No existe un anteproyecto con código 0.", "Error", JOptionPane.ERROR_MESSAGE);
                             }
                         } catch (RemoteException ex) {
                             Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Nombre Evaluador", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                    }              
-                }else{
+                    }
+                } else {
                     JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Observaciones", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
@@ -236,11 +254,8 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bntGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-   
-        txtConcepto.setText("");
         txtNombreEvaluador.setText("");
         txtObservaciones.setText("");
-       
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
@@ -256,8 +271,11 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtConcepto;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinnerConceptos;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField txtNombreEvaluador;
-    private javax.swing.JTextField txtObservaciones;
+    private javax.swing.JTextArea txtObservaciones;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,6 +42,8 @@ public class ListarFormatosTIA extends javax.swing.JInternalFrame {
         model.addColumn("Programa"); 
         model.addColumn("Estudiante 1");        
         model.addColumn("Estudiante 2"); 
+         model.addColumn("Evaluador 1"); 
+          model.addColumn("Evaluador 2"); 
         this.jTable1.setModel(model);
     }
  private void llenarTablaFormatosTIA() {
@@ -56,7 +58,7 @@ public class ListarFormatosTIA extends javax.swing.JInternalFrame {
     
         for (int i = 0; i <formatos.size(); i++) {
             FormatoTIA objFormatoTIA = formatos.get(i);
-            String[] fila = {String.valueOf(objFormatoTIA.getCodigoAnteproyecto()),objFormatoTIA.getTituloAnteproyecto(),objFormatoTIA.getNombrePrograma(),objFormatoTIA.getNombreEstudiante1(),objFormatoTIA.getNombreEstudiante2() + ""};
+            String[] fila = {String.valueOf(objFormatoTIA.getCodigoAnteproyecto()),objFormatoTIA.getTituloAnteproyecto(),objFormatoTIA.getNombrePrograma(),objFormatoTIA.getNombreEstudiante1(),objFormatoTIA.getNombreEstudiante2(),String.valueOf(objFormatoTIA.getIdentificacionEvaluador1()), objFormatoTIA.getIdentificacionEvaluador2() + ""};
             model.addRow(fila);
         }
     }
@@ -76,13 +78,15 @@ public class ListarFormatosTIA extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setClosable(true);
+        setBorder(null);
         setTitle("Listar anteproyectos Formato TI-A");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Lista de todos los anteproyectos");
 
+        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -100,23 +104,23 @@ public class ListarFormatosTIA extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(188, 188, 188)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(145, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(161, 161, 161))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

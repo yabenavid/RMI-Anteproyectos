@@ -7,6 +7,8 @@ package cliente.presentacion;
 
 import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
 import SGestionAnteproyectos.dto.FormatoTIA;
+import cliente.utilidades.UtilidadesGenerales;
+import java.awt.Color;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,10 +24,12 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
      * Creates new form Registrar
      */
     private GestionAnteproyectosInt objAnteproyectosInt;
+    private UtilidadesGenerales utilidadesGenerales;
     
     public RegistrarFormatoTIA(GestionAnteproyectosInt objGestionAnteproyectosInt) {
         initComponents();
         this.objAnteproyectosInt = objGestionAnteproyectosInt;
+        this.utilidadesGenerales = new UtilidadesGenerales();
     }
 
     /**
@@ -47,12 +51,12 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtTitulo = new javax.swing.JTextField();
-        txtEstudiante1 = new javax.swing.JTextField();
-        txtCodEstu1 = new javax.swing.JTextField();
-        txtCodEstu2 = new javax.swing.JTextField();
-        txtNomEstu2 = new javax.swing.JTextField();
+        txtNombrePrograma = new javax.swing.JTextField();
+        txtTituloAnteproyecto = new javax.swing.JTextField();
+        txtNomEstudiante1 = new javax.swing.JTextField();
+        txtCodEstudiante1 = new javax.swing.JTextField();
+        txtCodEstudiante2 = new javax.swing.JTextField();
+        txtNomEstudiante2 = new javax.swing.JTextField();
         txtNomDirector = new javax.swing.JTextField();
         txtNomCoDirector = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
@@ -62,42 +66,84 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
         txtObjetivosDelProyecto = new javax.swing.JTextArea();
 
         setBorder(null);
+        setTitle("Registro");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Nombre del programa:");
 
-        lbTituloPro.setText("Titulo Anteproyecto");
+        lbTituloPro.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lbTituloPro.setText("Titulo Anteproyecto:");
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Nombre Estudiante 1:");
 
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Código Estudiante 1:");
 
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Código Estudiante 2:");
 
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel7.setText("Nombre Estudiante 2:");
 
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setText("Nombre del Director:");
 
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel9.setText("Nombre Co-director:");
 
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel10.setText("Objetivos del Anteproyecto:");
 
-        btnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        txtNombrePrograma.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
-        bntGuardar.setText("Guardar");
+        txtTituloAnteproyecto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        txtNomEstudiante1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        txtCodEstudiante1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txtCodEstudiante1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodEstudiante1KeyTyped(evt);
+            }
+        });
+
+        txtCodEstudiante2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txtCodEstudiante2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodEstudiante2KeyTyped(evt);
+            }
+        });
+
+        txtNomEstudiante2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        txtNomDirector.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        txtNomCoDirector.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        btnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/icons8_ccleaner_32px.png"))); // NOI18N
+        btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        bntGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/guardar2.png"))); // NOI18N
         bntGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntGuardarActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Registrar Formatos TI-A");
 
         txtObjetivosDelProyecto.setColumns(20);
+        txtObjetivosDelProyecto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         txtObjetivosDelProyecto.setRows(5);
         jScrollPane1.setViewportView(txtObjetivosDelProyecto);
 
@@ -105,109 +151,108 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lbTituloPro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lbTituloPro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnLimpiar)
-                        .addGap(42, 42, 42)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNomDirector)
+                                .addComponent(txtTituloAnteproyecto)
+                                .addComponent(txtNomEstudiante1)
+                                .addComponent(txtCodEstudiante1)
+                                .addComponent(txtCodEstudiante2)
+                                .addComponent(txtNomEstudiante2)
+                                .addComponent(txtNomCoDirector, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtNombrePrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(3, 3, 3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNomDirector)
-                            .addComponent(txtTitulo)
-                            .addComponent(txtEstudiante1)
-                            .addComponent(txtCodEstu1)
-                            .addComponent(txtCodEstu2)
-                            .addComponent(txtNomEstu2)
-                            .addComponent(txtNomCoDirector)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1))
-                .addGap(54, 54, 54))
+                .addGap(23, 23, 23))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTituloPro)
-                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEstudiante1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtCodEstu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtNombrePrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtTituloAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbTituloPro))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtNomEstudiante1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtCodEstudiante1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5)))
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCodEstudiante2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomEstudiante2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNomDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtCodEstu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtNomEstu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtNomDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtNomCoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomCoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 18, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -215,12 +260,12 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
 
     private void bntGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGuardarActionPerformed
         FormatoTIA objFormatosTIA = new FormatoTIA();      
-        objFormatosTIA.setNombrePrograma(txtNombre.getText());
-        objFormatosTIA.setTituloAnteproyecto(txtTitulo.getText());
-        objFormatosTIA.setNombreEstudiante1(txtEstudiante1.getText());
-        objFormatosTIA.setCodigoEstudiante1(Integer.parseInt(txtCodEstu1.getText()));
-        objFormatosTIA.setNombreEstudiante2(txtNomEstu2.getText());
-        objFormatosTIA.setCodigoEstudiante2(Integer.parseInt(txtCodEstu2.getText()));
+        objFormatosTIA.setNombrePrograma(txtNombrePrograma.getText());
+        objFormatosTIA.setTituloAnteproyecto(txtTituloAnteproyecto.getText());
+        objFormatosTIA.setNombreEstudiante1(txtNomEstudiante1.getText());
+        objFormatosTIA.setCodigoEstudiante1(Integer.parseInt(txtCodEstudiante1.getText()));
+        objFormatosTIA.setNombreEstudiante2(txtNomEstudiante2.getText());
+        objFormatosTIA.setCodigoEstudiante2(Integer.parseInt(txtCodEstudiante2.getText()));
         objFormatosTIA.setNombredirector(txtNomDirector.getText());     
         objFormatosTIA.setNombreCoDirector(txtNomCoDirector.getText());
         objFormatosTIA.setObetivosAnteproyecto(txtObjetivosDelProyecto.getText());
@@ -230,6 +275,7 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
             objFormatosTIA.setCodigoAnteproyecto(objAnteproyectosInt.solicitarCodigo());
             if(objAnteproyectosInt.remitirFormatoTIA(objFormatosTIA)){
                 JOptionPane.showMessageDialog(null, "Formato TIA registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                btnLimpiar.doClick();
             }
             else{
                 JOptionPane.showMessageDialog(null, "No es posible registrar un anteproyecto con código 0.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -238,6 +284,26 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
             Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bntGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtNombrePrograma.setText("");
+        txtTituloAnteproyecto.setText("");
+        txtNomEstudiante1.setText("");
+        txtCodEstudiante1.setText("");
+        txtNomEstudiante2.setText("");
+        txtCodEstudiante2.setText("");
+        txtNomDirector.setText("");
+        txtNomCoDirector.setText("");
+        txtObjetivosDelProyecto.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtCodEstudiante1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodEstudiante1KeyTyped
+       utilidadesGenerales.verificarSoloNumeros(evt);
+    }//GEN-LAST:event_txtCodEstudiante1KeyTyped
+
+    private void txtCodEstudiante2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodEstudiante2KeyTyped
+        utilidadesGenerales.verificarSoloNumeros(evt);
+    }//GEN-LAST:event_txtCodEstudiante2KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -255,14 +321,14 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloPro;
-    private javax.swing.JTextField txtCodEstu1;
-    private javax.swing.JTextField txtCodEstu2;
-    private javax.swing.JTextField txtEstudiante1;
+    private javax.swing.JTextField txtCodEstudiante1;
+    private javax.swing.JTextField txtCodEstudiante2;
     private javax.swing.JTextField txtNomCoDirector;
     private javax.swing.JTextField txtNomDirector;
-    private javax.swing.JTextField txtNomEstu2;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNomEstudiante1;
+    private javax.swing.JTextField txtNomEstudiante2;
+    private javax.swing.JTextField txtNombrePrograma;
     private javax.swing.JTextArea txtObjetivosDelProyecto;
-    private javax.swing.JTextField txtTitulo;
+    private javax.swing.JTextField txtTituloAnteproyecto;
     // End of variables declaration//GEN-END:variables
 }

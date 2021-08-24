@@ -23,6 +23,8 @@ public class Conexion extends javax.swing.JFrame {
     public Conexion() {
         setTitle("Registrar NS");
         initComponents();
+         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -40,42 +42,45 @@ public class Conexion extends javax.swing.JFrame {
         lblNumPuerto = new javax.swing.JLabel();
         txtNumPuerto = new javax.swing.JTextField();
         pnlBoton = new javax.swing.JPanel();
-        btnRegistrar = new javax.swing.JButton();
+        btnConectar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlConexion.setBackground(new java.awt.Color(0, 153, 153));
+        pnlConexion.setBackground(new java.awt.Color(0, 102, 153));
         pnlConexion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Conexion Servidor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        pnlConexion.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         pnlConexion.setLayout(new java.awt.GridLayout(5, 1));
 
-        lblDirIp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblDirIp.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lblDirIp.setForeground(new java.awt.Color(255, 255, 255));
         lblDirIp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDirIp.setText("Cual es el la dirección ip donde se encuentra  el n_s");
+        lblDirIp.setText("Cuál es el la dirección ip donde se encuentra  el n_s");
         pnlConexion.add(lblDirIp);
 
+        txtIp.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         txtIp.setText("localhost");
         pnlConexion.add(txtIp);
 
-        lblNumPuerto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumPuerto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lblNumPuerto.setForeground(new java.awt.Color(255, 255, 255));
         lblNumPuerto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNumPuerto.setText("Cual es el número de puerto por el cual escucha el n_s");
+        lblNumPuerto.setText("Cuál es el número de puerto por el cual escucha el n_s");
         pnlConexion.add(lblNumPuerto);
 
+        txtNumPuerto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         txtNumPuerto.setText("5000");
         pnlConexion.add(txtNumPuerto);
 
         pnlBoton.setLayout(new java.awt.GridBagLayout());
 
-        btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnConectar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btnConectar.setText("Conectar");
+        btnConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnConectarActionPerformed(evt);
             }
         });
-        pnlBoton.add(btnRegistrar, new java.awt.GridBagConstraints());
+        pnlBoton.add(btnConectar, new java.awt.GridBagConstraints());
 
         pnlConexion.add(pnlBoton);
 
@@ -100,10 +105,12 @@ public class Conexion extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        pnlConexion.getAccessibleContext().setAccessibleName("Conexión Servidor");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
              
         String varIp = txtIp.getText();
         int varPuerto = Integer.parseInt(txtNumPuerto.getText());
@@ -119,7 +126,7 @@ public class Conexion extends javax.swing.JFrame {
         } else {
             System.out.println("No se logra obtener el objeto remoto");
         }
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btnConectarActionPerformed
         /**
      * @param args the command line arguments
      */
@@ -158,7 +165,7 @@ public class Conexion extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnConectar;
     private javax.swing.JLabel lblDirIp;
     private javax.swing.JLabel lblNumPuerto;
     private javax.swing.JPanel pnlBoton;

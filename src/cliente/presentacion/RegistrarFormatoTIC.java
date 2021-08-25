@@ -25,16 +25,20 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
      */
     private GestionAnteproyectosInt objGestionAnteproyectosInt;
     private ArrayList<Integer> codsAnteproyectosRemitidos;
+    private int idJefeDepto;
+    
     public RegistrarFormatoTIC() {
         initComponents();
        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
     }
-     public RegistrarFormatoTIC(GestionAnteproyectosInt objGestionAnteproyectosInt)throws RemoteException {
-       this.objGestionAnteproyectosInt= objGestionAnteproyectosInt;
-         initComponents();
-         codsAnteproyectosRemitidos = new ArrayList<>();
-       ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
-       consultarCodigosAnteproyectos();
+     public RegistrarFormatoTIC(GestionAnteproyectosInt objGestionAnteproyectosInt, int idJefeDepto)throws RemoteException {
+        this.objGestionAnteproyectosInt= objGestionAnteproyectosInt;
+        this.idJefeDepto = idJefeDepto;
+        initComponents();
+        codsAnteproyectosRemitidos = new ArrayList<>();
+        txtConcepto1.setEditable(false);
+        txtConcepto2.setEditable(false);
+        consultarCodigosAnteproyectos();
     }
 
     /**
@@ -57,12 +61,12 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
         bntGuardar = new javax.swing.JButton();
         txtConcepto1 = new javax.swing.JTextField();
         txtConcepto2 = new javax.swing.JTextField();
-        txtConDepto = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
         cbxCodigoAnteproyectos = new javax.swing.JComboBox<>();
         cbxEstructura = new javax.swing.JComboBox<>();
+        jSpinnerConcepto = new javax.swing.JSpinner();
 
         setTitle("Registro");
         setPreferredSize(new java.awt.Dimension(560, 467));
@@ -107,8 +111,6 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
 
         txtConcepto2.setPreferredSize(new java.awt.Dimension(29, 21));
 
-        txtConDepto.setPreferredSize(new java.awt.Dimension(29, 21));
-
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel7.setText("Registrar Formatos TI-C");
 
@@ -124,27 +126,15 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
 
         cbxEstructura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CORRECTO", "INCORRECTO" }));
 
+        jSpinnerConcepto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jSpinnerConcepto.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1, 1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtConcepto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtConcepto2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbxCodigoAnteproyectos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbxEstructura, 0, 226, Short.MAX_VALUE)
-                            .addComponent(txtConDepto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,7 +147,22 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1))))
+                            .addComponent(jScrollPane1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtConcepto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtConcepto2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxCodigoAnteproyectos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxEstructura, 0, 259, Short.MAX_VALUE)
+                            .addComponent(jSpinnerConcepto))))
                 .addGap(44, 44, 44))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(169, 169, 169)
@@ -169,7 +174,7 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel7)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxCodigoAnteproyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -185,13 +190,15 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cbxEstructura, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5))
-                    .addComponent(txtConDepto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(61, 61, 61))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinnerConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -211,27 +218,43 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-  
+        jSpinnerConcepto.setValue(0);
         txtConcepto1.setText("");
         txtConcepto2.setText("");
-        txtConDepto.setText("");
         txtObservaciones.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
+ private boolean validarAnteproyecto(int idAnteproyecto) {
+        ArrayList<FormatoTIC> objFormatoTICs;
+        try {
+            objFormatoTICs = objGestionAnteproyectosInt.consultarFormatosTIC();
+            for (int i = 0; i < objFormatoTICs.size(); i++) {
+                if (objFormatoTICs.get(i).getCodigoAnteproyecto() == idAnteproyecto && objFormatoTICs.get(i).getJefeDeto()== idJefeDepto) {
+                        return  true;
+                }
+            }
 
+        } catch (Exception ex) {
+            Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  false;
+        
+    }
     private void bntGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGuardarActionPerformed
           
         if (cbxCodigoAnteproyectos.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Por favor seleccione un Codigo de anteproyecto");
         } else {
             if (cbxEstructura.getSelectedIndex()!= -1) {
-                if (!txtConDepto.getText().isEmpty()) {
+                if (!jSpinnerConcepto.getValue().equals("")) {
                     if(!txtObservaciones.getText().isEmpty()){
                         FormatoTIC objFormatosTIC = new FormatoTIC(); 
                         objFormatosTIC.setCodigoAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()));
@@ -241,26 +264,32 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
                         }else{
                             objFormatosTIC.setEstructura(false);
                         }
-                        
+                        objFormatosTIC.setConceptoDepto(Integer.parseInt(jSpinnerConcepto.getValue().toString()));
                         objFormatosTIC.setObservaciones(txtObservaciones.getText());
                         try {
-                            if(validarConceptos()){
-                                if(objGestionAnteproyectosInt.remitirFormatoTIC(objFormatosTIC)){
-                                    JOptionPane.showMessageDialog(null, "Formato TIC registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-                                    btnLimpiar.doClick();
+                            if (!validarAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()))) {
+                                if (validarConceptos()) {
+                                    if (objGestionAnteproyectosInt.remitirFormatoTIC(objFormatosTIC)) {
+                                        JOptionPane.showMessageDialog(null, "Formato TIC registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                                        btnLimpiar.doClick();
+                                        
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "No existe un anteproyecto con código 0.", "Error", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                    codsAnteproyectosRemitidos.add(objFormatosTIC.getCodigoAnteproyecto());
                                 }
-                                else{
-                                    JOptionPane.showMessageDialog(null, "No existe un anteproyecto con código 0.", "Error", JOptionPane.ERROR_MESSAGE);
-                                }
-                               codsAnteproyectosRemitidos.add(objFormatosTIC.getCodigoAnteproyecto());
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Ya se ha registrado un Formato TIC para el código de anteproyecto seleccionado", "Error", JOptionPane.ERROR_MESSAGE);                                    
+                                btnLimpiar.doClick();
                             }
-
+                            
                         } catch (RemoteException ex) {
                             Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }else{
                         JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Observaciones", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                    }              
+                    }
+                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Concepto del Departamento", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
@@ -339,7 +368,7 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtConDepto;
+    private javax.swing.JSpinner jSpinnerConcepto;
     private javax.swing.JTextField txtConcepto1;
     private javax.swing.JTextField txtConcepto2;
     private javax.swing.JTextArea txtObservaciones;

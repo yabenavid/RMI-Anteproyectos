@@ -68,7 +68,7 @@ public class GestionUsuariosImpl extends UnicastRemoteObject implements GestionU
              if(objUsuario.getId() == usuarios.get(i).getId()){
                  usuarios.get(i).setId(objUsuario.getId());
                  usuarios.get(i).setNombre(objUsuario.getNombre());
-                 usuarios.get(i).setRol(RolEnum.valueOf(objUsuario.getNombre()));
+                 usuarios.get(i).setRol(RolEnum.valueOf(objUsuario.getRol().toString()));
                  usuarios.get(i).setDepartamento(objUsuario.getDepartamento());
                  usuarios.get(i).setUsuario(objUsuario.getUsuario());
                  usuarios.get(i).setContrasena(objUsuario.getContrasena());

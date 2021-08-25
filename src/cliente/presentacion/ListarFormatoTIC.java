@@ -5,6 +5,15 @@
  */
 package cliente.presentacion;
 
+import SGestionAnteproyectos.dto.FormatoTIC;
+import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
+import cliente.utilidades.UtilidadesGenerales;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author YENNYFER
@@ -14,8 +23,22 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListarFormatoTIC
      */
+    private GestionAnteproyectosInt objGestionAnteproyectosInt;
+    private UtilidadesGenerales utilidadesGenerales;
+    private ArrayList<FormatoTIC> formatosTIC;
+    private int idJefeDepto;
+      
     public ListarFormatoTIC() {
         initComponents();
+    }
+       public ListarFormatoTIC(GestionAnteproyectosInt objGestionAnteproyectosInt, int idJefeDpto) {
+        initComponents();
+        this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
+        this. utilidadesGenerales = new UtilidadesGenerales();
+        this.idJefeDepto = idJefeDpto;
+        formatosTIC = new ArrayList<>();
+        inicializarTablaFormatosTIC();
+        llenarTablaFormatosTIC();
     }
 
     /**
@@ -30,7 +53,7 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbAnteproyectos = new javax.swing.JTable();
 
         setBorder(null);
         setTitle("Ateproyectos");
@@ -40,8 +63,8 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Lista de todos los anteproyectos");
 
-        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbAnteproyectos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jtbAnteproyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -52,7 +75,7 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtbAnteproyectos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,12 +113,37 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void inicializarTablaFormatosTIC(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Código Anteproyecto");
+        model.addColumn("Estructura"); 
+        model.addColumn("Concepto Dpto"); 
+        model.addColumn("Observaciones");      
+        this.jtbAnteproyectos.setModel(model);
+    }
+     private void llenarTablaFormatosTIC() {
+        
+         DefaultTableModel model = (DefaultTableModel) this.jtbAnteproyectos.getModel();
+         utilidadesGenerales.limpiarTabla(jtbAnteproyectos);
+         try {
+             this.formatosTIC = objGestionAnteproyectosInt.consultarFormatosTIC();
+         } catch (RemoteException ex) {
+             Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         for (int i = 0; i < formatosTIC.size(); i++) {
+             FormatoTIC objFormatoTIC = formatosTIC.get(i);
+             if (objFormatoTIC.getJefeDeto() == idJefeDepto) {
+                 String[] fila = {String.valueOf(objFormatoTIC.getCodigoAnteproyecto()), String.valueOf(objFormatoTIC.getEstructura()), String.valueOf(objFormatoTIC.getConceptoDepto()), objFormatoTIC.getObservaciones() + ""};
+                 model.addRow(fila);
+             }
 
+         }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtbAnteproyectos;
     // End of variables declaration//GEN-END:variables
 }

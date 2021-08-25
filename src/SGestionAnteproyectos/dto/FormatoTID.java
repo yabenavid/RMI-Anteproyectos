@@ -16,12 +16,14 @@ public class FormatoTID implements Serializable{
     private boolean estructura;
     private int conceptoComite;
     private String observaciones;
+    private int idCoordinador;
     
     public FormatoTID() {
         this.codigoAnteproyecto = -1;
         this.estructura = false;
         this.conceptoComite = -1;
         this.observaciones = "";
+        this.idCoordinador = -1;
     }
 
     public FormatoTID(int codigoAnteproyecto, boolean estructura, int conceptoComite, String observaciones) {
@@ -62,4 +64,13 @@ public class FormatoTID implements Serializable{
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
+
+    public int getIdCoordinador() {
+        return idCoordinador;
+    }
+
+    public void setIdCoordinador(int idCoordinador) {
+        this.idCoordinador = idCoordinador;
+    }
+    
 }

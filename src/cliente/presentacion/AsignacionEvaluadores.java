@@ -68,6 +68,7 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtCodigoAnteproyecto = new javax.swing.JTextField();
         btnGuadar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -112,6 +113,13 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,11 +143,14 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuadar)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLimpiar)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGuadar)))))
                 .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -165,7 +176,9 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuadar))
-                .addGap(47, 47, 47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimpiar)
+                .addGap(16, 16, 16))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(59, 59, 59)
@@ -198,6 +211,7 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
                             if(objGestionAnteproyectosInt.asignarEvaluador(Integer.parseInt(txtCodigoAnteproyecto.getText()),Integer.parseInt(txtIndentificacion.getText()))){
                                 llenarTablaAnteproyectos();
                                 JOptionPane.showMessageDialog(null, "Evaluador asignado exitosamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+                                btnLimpiar.doClick();
 
                             }else{
                                JOptionPane.showMessageDialog(null, "El anteproyecto con código: "+ txtCodigoAnteproyecto.getText() +"  ya cuenta con los dos evaludores", "Información", JOptionPane.INFORMATION_MESSAGE); 
@@ -221,6 +235,11 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Identificación del Evaluador", "Advertencia", JOptionPane.WARNING_MESSAGE);      
         }
     }//GEN-LAST:event_btnGuadarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtCodigoAnteproyecto.setText("");
+        txtIndentificacion.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
     private boolean validarCodigoAnteproyecto(){
         for(int i =0; i<formatoTIAs.size();i++){
             if(formatoTIAs.get(i).getCodigoAnteproyecto() == Integer.parseInt(txtCodigoAnteproyecto.getText())){
@@ -286,6 +305,7 @@ public class AsignacionEvaluadores extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuadar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

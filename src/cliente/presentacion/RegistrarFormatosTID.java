@@ -5,7 +5,6 @@
  */
 package cliente.presentacion;
 
-
 import SGestionAnteproyectos.dto.FormatoTIC;
 import SGestionAnteproyectos.dto.FormatoTID;
 import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
@@ -25,18 +24,21 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
      * Creates new form RegistrarFormatosTID
      */
     private GestionAnteproyectosInt objGestionAnteproyectosInt;
-    
+    private int idCoordinador;
+
     public RegistrarFormatosTID() {
         initComponents();
-         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+        //((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
     }
-     public RegistrarFormatosTID(GestionAnteproyectosInt objGestionAnteproyectosInt) throws RemoteException{
-         
+
+    public RegistrarFormatosTID(GestionAnteproyectosInt objGestionAnteproyectosInt, int idCoordinador) throws RemoteException {
+        this.idCoordinador = idCoordinador;
         this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
         initComponents();
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+        //((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
         consultarCodigosAnteproyectos();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +53,6 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtConceptoComite = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         bntGuardar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -59,6 +60,7 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
         cbxEstructura = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
+        jSpinnerconcepto = new javax.swing.JSpinner();
 
         setBorder(null);
         setTitle("Registro");
@@ -76,8 +78,6 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Observaciones:");
-
-        txtConceptoComite.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         btnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/icons8_ccleaner_32px.png"))); // NOI18N
@@ -104,6 +104,9 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
         txtObservaciones.setRows(5);
         jScrollPane1.setViewportView(txtObservaciones);
 
+        jSpinnerconcepto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jSpinnerconcepto.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1, 1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,9 +130,9 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel4))
                                 .addGap(40, 40, 40)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtConceptoComite)
                                     .addComponent(cbxCodigoAnteproyectos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbxEstructura, 0, 260, Short.MAX_VALUE))))))
+                                    .addComponent(cbxEstructura, 0, 260, Short.MAX_VALUE)
+                                    .addComponent(jSpinnerconcepto))))))
                 .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(201, 201, 201)
@@ -157,7 +160,7 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtConceptoComite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSpinnerconcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addGap(8, 8, 8)
@@ -182,44 +185,48 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        System.out.println("Limpiando Campos de Registrar formatos TID"); 
-        txtConceptoComite.setText("");
+        System.out.println("Limpiando Campos de Registrar formatos TID");
+        jSpinnerconcepto.setValue(0);
         txtObservaciones.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void bntGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGuardarActionPerformed
-       
+
         if (cbxCodigoAnteproyectos.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Por favor seleccione un Codigo de anteproyecto");
         } else {
-            if (cbxEstructura.getSelectedIndex()!= -1) {
-                if (!txtConceptoComite.getText().isEmpty()) {
-                    if(!txtObservaciones.getText().isEmpty()){
-                        FormatoTID objFormatosTID = new FormatoTID(); 
+            if (cbxEstructura.getSelectedIndex() != -1) {
+                if (!jSpinnerconcepto.getValue().equals("")) {
+                    if (!txtObservaciones.getText().isEmpty()) {
+                        FormatoTID objFormatosTID = new FormatoTID();
                         objFormatosTID.setCodigoAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()));
-                                             
-                        if("CORRECTO".equals(cbxEstructura.getSelectedItem().toString())){
+
+                        if ("CORRECTO".equals(cbxEstructura.getSelectedItem().toString())) {
                             objFormatosTID.setEstructura(true);
-                        }else{
+                        } else {
                             objFormatosTID.setEstructura(false);
                         }
-                        objFormatosTID.setConceptoComite(Integer.parseInt(txtConceptoComite.getText()));
+                        objFormatosTID.setConceptoComite(Integer.parseInt(jSpinnerconcepto.getValue().toString()));
                         objFormatosTID.setObservaciones(txtObservaciones.getText());
-                        try {                        
-                                if(objGestionAnteproyectosInt.remitirFormatoTID(objFormatosTID)){
+                        try {
+                            if (!validarAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()))) {
+                                if (objGestionAnteproyectosInt.remitirFormatoTID(objFormatosTID)) {
                                     JOptionPane.showMessageDialog(null, "Formato TID registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
                                     btnLimpiar.doClick();
-                                }
-                                else{
+                                } else {
                                     JOptionPane.showMessageDialog(null, "No existe un anteproyecto con código 0.", "Error", JOptionPane.ERROR_MESSAGE);
-                                }                         
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Ya se ha registrado un Formato TID para el código de anteproyecto seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+                                    btnLimpiar.doClick();
+                            }
                         } catch (RemoteException ex) {
                             Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Observaciones", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                    }              
-                }else{
+                    }
+                } else {
                     JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Concepto del Departamento", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
@@ -227,17 +234,33 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_bntGuardarActionPerformed
+    private boolean validarAnteproyecto(int idAnteproyecto) {
+        ArrayList<FormatoTID> objFormatoTIDs;
+        try {
+            objFormatoTIDs = objGestionAnteproyectosInt.consultarFormatosTID();
+            for (int i = 0; i < objFormatoTIDs.size(); i++) {
+                if (objFormatoTIDs.get(i).getCodigoAnteproyecto() == idAnteproyecto && objFormatoTIDs.get(i).getIdCoordinador() == idCoordinador) {
+                    return true;
+                }
+            }
 
-     private void consultarCodigosAnteproyectos() throws RemoteException{
- 
+        } catch (Exception ex) {
+            Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
+
+    private void consultarCodigosAnteproyectos() throws RemoteException {
+
         ArrayList<FormatoTIC> objFormatoTICs;
         objFormatoTICs = objGestionAnteproyectosInt.consultarFormatosTIC();
-       
-        if(!objFormatoTICs.isEmpty()){                
-            for (int i=0; i<objFormatoTICs.size(); i++){           
-                cbxCodigoAnteproyectos.addItem(String.valueOf(objFormatoTICs.get(i).getCodigoAnteproyecto()));                             
+
+        if (!objFormatoTICs.isEmpty()) {
+            for (int i = 0; i < objFormatoTICs.size(); i++) {
+                cbxCodigoAnteproyectos.addItem(String.valueOf(objFormatoTICs.get(i).getCodigoAnteproyecto()));
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No hay Anteproyectos revisados y avalados por el comite del programa", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
         }
@@ -254,7 +277,7 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtConceptoComite;
+    private javax.swing.JSpinner jSpinnerconcepto;
     private javax.swing.JTextArea txtObservaciones;
     // End of variables declaration//GEN-END:variables
 }

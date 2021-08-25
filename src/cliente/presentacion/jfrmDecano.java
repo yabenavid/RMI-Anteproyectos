@@ -5,6 +5,12 @@
  */
 package cliente.presentacion;
 
+import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
+import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author YENNYFER
@@ -14,8 +20,19 @@ public class jfrmDecano extends javax.swing.JFrame {
     /**
      * Creates new form jfrmDecano
      */
+    private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
+    private int idDecano;
+    private String usuario;
+    
+    
     public jfrmDecano() {
         initComponents();
+    }
+    public jfrmDecano(SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt, int idDecano, String usuario) {
+        initComponents();
+        this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectosInt;
+        this.idDecano = idDecano;
+        this.usuario = usuario;
     }
 
     /**
@@ -50,7 +67,7 @@ public class jfrmDecano extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Remitir Resolución");
 
         javax.swing.GroupLayout btnRemitirResolucionLayout = new javax.swing.GroupLayout(btnRemitirResolucion);
@@ -58,7 +75,7 @@ public class jfrmDecano extends javax.swing.JFrame {
         btnRemitirResolucionLayout.setHorizontalGroup(
             btnRemitirResolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnRemitirResolucionLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -73,7 +90,7 @@ public class jfrmDecano extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Historial TGI");
 
         javax.swing.GroupLayout btnHistorialTGILayout = new javax.swing.GroupLayout(btnHistorialTGI);
@@ -83,7 +100,7 @@ public class jfrmDecano extends javax.swing.JFrame {
             .addGroup(btnHistorialTGILayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         btnHistorialTGILayout.setVerticalGroup(
             btnHistorialTGILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +117,7 @@ public class jfrmDecano extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Salir");
 
         javax.swing.GroupLayout btnSalirLayout = new javax.swing.GroupLayout(btnSalir);
@@ -123,8 +140,8 @@ public class jfrmDecano extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("TGIA probados");
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setText("TGI Aprobados");
 
         javax.swing.GroupLayout btnTGIAprobadosLayout = new javax.swing.GroupLayout(btnTGIAprobados);
         btnTGIAprobados.setLayout(btnTGIAprobadosLayout);
@@ -132,7 +149,7 @@ public class jfrmDecano extends javax.swing.JFrame {
             btnTGIAprobadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnTGIAprobadosLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnTGIAprobadosLayout.setVerticalGroup(
@@ -170,7 +187,7 @@ public class jfrmDecano extends javax.swing.JFrame {
                 .addComponent(btnTGIAprobados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         pnl1.setBackground(new java.awt.Color(255, 255, 255));
@@ -208,18 +225,25 @@ public class jfrmDecano extends javax.swing.JFrame {
 
         pnl1.removeAll();
         pnl1.repaint();
-        RemitirResolucion registrar = new RemitirResolucion();
+        RemitirResolucion registrar = new RemitirResolucion(objSeguimientoAnteproyectosInt);
         pnl1.add(registrar);
         registrar.show();
     }//GEN-LAST:event_btnRemitirResolucionMouseClicked
 
     private void btnHistorialTGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialTGIMouseClicked
 
-//        pnl1.removeAll();
-//        pnl1.repaint();
-//        ListarFormatosTIA formato = new ListarFormatosTIA();
-//        pnl1.add(formato);
-//        formato.show();
+        try {
+             pnl1.removeAll();
+            pnl1.repaint();
+            
+            String historial = objSeguimientoAnteproyectosInt.consultarFormatos();
+            HistorialTGI objHistorialTGI = new HistorialTGI(historial);
+            pnl1.add(objHistorialTGI);
+            objHistorialTGI.show();
+            
+        } catch (RemoteException ex) {
+            Logger.getLogger(jfrmDecano.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnHistorialTGIMouseClicked
 
@@ -230,7 +254,16 @@ public class jfrmDecano extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseClicked
 
     private void btnTGIAprobadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTGIAprobadosMouseClicked
-        // TODO add your handling code here:
+        try {
+            pnl1.removeAll();
+            pnl1.repaint();
+            String resoluciones = objSeguimientoAnteproyectosInt.consultarResoluciones();
+           TGIAprobados tGIAprobados = new TGIAprobados(resoluciones);
+           pnl1.add(tGIAprobados);
+           tGIAprobados.show();
+        } catch (RemoteException ex) {
+            Logger.getLogger(jfrmDecano.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnTGIAprobadosMouseClicked
 
     /**

@@ -27,15 +27,16 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     private final int identificacionEvaluador;
     public static ArrayList<Integer> codigosAnteproyectos;
 
-    public RegistrarFormatoTIB(GestionAnteproyectosInt objGestionAnteproyectosInt, int identificacionEvaluador) throws RemoteException {
+    public RegistrarFormatoTIB(GestionAnteproyectosInt objGestionAnteproyectosInt, int identificacionEvaluador, String nombreEvaluador) throws RemoteException {
         this.objAnteproyectosInt = objGestionAnteproyectosInt;
         this.identificacionEvaluador = identificacionEvaluador;
-        codigosAnteproyectos = new ArrayList<>();
+        this.codigosAnteproyectos = new ArrayList<>();
         initComponents();
-
         dtcFechaEvalucion.setDateFormatString("dd/MM/yyyy");
-        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-
+        txtIdenEvaluador.setText(String.valueOf(identificacionEvaluador));
+        txtIdenEvaluador.setEditable(false);
+        txtNombreEvaluador.setText(nombreEvaluador);
+        txtNombreEvaluador.setEditable(false);
         consultarCodigosAnteproyectos();
     }
 
@@ -65,6 +66,8 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         txtObservaciones = new javax.swing.JTextArea();
         jSpinnerConceptos = new javax.swing.JSpinner();
         btnLimpiar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtIdenEvaluador = new javax.swing.JTextField();
 
         setBorder(null);
         setTitle("Registro");
@@ -72,7 +75,7 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel1.setText("Registrar Fromatos TI-B");
+        jLabel1.setText("Registrar Formatos TI-B");
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Código del Anteproyecto:");
@@ -115,6 +118,11 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel7.setText("Identificación del evaluador:");
+
+        txtIdenEvaluador.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -129,14 +137,21 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
                         .addGap(50, 50, 50)
                         .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel7)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtIdenEvaluador, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                             .addComponent(jSpinnerConceptos, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNombreEvaluador)
                             .addComponent(cbxCodigoAnteproyectos, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -145,7 +160,7 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(196, 196, 196)
                 .addComponent(jLabel1)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,23 +178,27 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdenEvaluador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtNombreEvaluador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(txtNombreEvaluador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(dtcFechaEvalucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dtcFechaEvalucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bntGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bntGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
         );
 
@@ -198,23 +217,45 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void consultarCodigosAnteproyectos() throws RemoteException {
 
-        ArrayList<FormatoTIA> objFormatos;
-        objFormatos = objAnteproyectosInt.consultarFormatosTIA();
+        ArrayList<FormatoTIA> objFormatosTIA;
+        ArrayList<FormatoTIB> objFormatoTIBs;
+        objFormatosTIA = objAnteproyectosInt.consultarFormatosTIA();
+        objFormatoTIBs = objAnteproyectosInt.consultarFormatosTIB();
 
-        if (!objFormatos.isEmpty()) {
+        if (!objFormatosTIA.isEmpty()) {
 
-            for (int i = 0; i < objFormatos.size(); i++) {
-                if (objFormatos.get(i).getIdentificacionEvaluador1() == identificacionEvaluador
-                        || objFormatos.get(i).getIdentificacionEvaluador2() == identificacionEvaluador) {
-                    cbxCodigoAnteproyectos.addItem(String.valueOf(objFormatos.get(i).getCodigoAnteproyecto()));
-                    codigosAnteproyectos.add(objFormatos.get(i).getCodigoAnteproyecto());
-                } 
+            for (int i = 0; i < objFormatosTIA.size(); i++) {
+                if (objFormatosTIA.get(i).getIdentificacionEvaluador1() == identificacionEvaluador
+                        || objFormatosTIA.get(i).getIdentificacionEvaluador2() == identificacionEvaluador) {
+                    codigosAnteproyectos.add(objFormatosTIA.get(i).getCodigoAnteproyecto());
+
+                    cbxCodigoAnteproyectos.addItem(String.valueOf(objFormatosTIA.get(i).getCodigoAnteproyecto()));
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Evaluador registrado NO cuenta con Anteproyectos asignados", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
         }
     }
+
+    private boolean validarAnteproyecto(int idAnteproyecto) {
+        ArrayList<FormatoTIB> objFormatoTIBs;
+        try {
+            objFormatoTIBs = objAnteproyectosInt.consultarFormatosTIB();
+            for (int i = 0; i < objFormatoTIBs.size(); i++) {
+                if (objFormatoTIBs.get(i).getCodigoAnteproyecto() == idAnteproyecto && objFormatoTIBs.get(i).getIdentificacionEvaluador() == identificacionEvaluador) {
+                    return true;
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
+
     private void bntGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGuardarActionPerformed
 
         if (cbxCodigoAnteproyectos.getSelectedIndex() == -1) {
@@ -222,27 +263,35 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         } else {
             if (!jSpinnerConceptos.getValue().equals("")) {
                 if (!txtObservaciones.getText().isEmpty()) {
-                    if (!txtNombreEvaluador.getText().isEmpty()) {
-                        FormatoTIB objFormatosTIB = new FormatoTIB();
-                        objFormatosTIB.setCodigoAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()));
-                        objFormatosTIB.setConcepto(Integer.parseInt(jSpinnerConceptos.getValue().toString()));
-                        objFormatosTIB.setObservaciones(txtObservaciones.getText());
-                        objFormatosTIB.setFechaEvaluacion(String.valueOf(dtcFechaEvalucion.getDate()));
-                        objFormatosTIB.setNombreEvaluador(txtNombreEvaluador.getText());
-                        try {
-
-                            if (objAnteproyectosInt.remitirFormatoTIB(objFormatosTIB)) {
-                                JOptionPane.showMessageDialog(null, "Formato TIB registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-                                
-                                btnLimpiar.doClick();
-                            } else {
-                                JOptionPane.showMessageDialog(null, "No existe un anteproyecto con código 0.", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (!txtIdenEvaluador.getText().isEmpty()) {
+                        if (!txtNombreEvaluador.getText().isEmpty()) {
+                            FormatoTIB objFormatosTIB = new FormatoTIB();
+                            objFormatosTIB.setCodigoAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()));
+                            objFormatosTIB.setConcepto(Integer.parseInt(jSpinnerConceptos.getValue().toString()));
+                            objFormatosTIB.setObservaciones(txtObservaciones.getText());
+                            objFormatosTIB.setFechaEvaluacion(String.valueOf(dtcFechaEvalucion.getDate()));
+                            objFormatosTIB.setNombreEvaluador(txtNombreEvaluador.getText());
+                            objFormatosTIB.setIdentificacionEvaluador(Integer.parseInt(txtIdenEvaluador.getText()));
+                            try {
+                                if (!validarAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()))) {
+                                    if (objAnteproyectosInt.remitirFormatoTIB(objFormatosTIB)) {
+                                        JOptionPane.showMessageDialog(null, "Formato TIB registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                                        btnLimpiar.doClick();
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "No existe un anteproyecto con código 0.", "Error", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Ya se ha registrado un Formato TIB para el código de anteproyecto seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+                                    btnLimpiar.doClick();
+                                }
+                            } catch (RemoteException ex) {
+                                Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        } catch (RemoteException ex) {
-                            Logger.getLogger(RegistrarFormatoTIA.class.getName()).log(Level.SEVERE, null, ex);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Nombre Evaluador", "Advertencia", JOptionPane.WARNING_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Nombre Evaluador", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Identificación  Evaluador", "Advertencia", JOptionPane.WARNING_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Observaciones", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -254,8 +303,9 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bntGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        txtNombreEvaluador.setText("");
+        jSpinnerConceptos.setValue(0);
         txtObservaciones.setText("");
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
@@ -270,11 +320,13 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerConceptos;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTextField txtIdenEvaluador;
     private javax.swing.JTextField txtNombreEvaluador;
     private javax.swing.JTextArea txtObservaciones;
     // End of variables declaration//GEN-END:variables

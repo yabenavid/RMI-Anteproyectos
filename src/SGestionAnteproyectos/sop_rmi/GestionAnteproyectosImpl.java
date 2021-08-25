@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import SGestionAnteproyectos.utilidades.UtilidadesRegistroC;
 import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
+import cliente.sop_rmi.NotificacionInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +22,8 @@ import java.util.logging.Logger;
 public class GestionAnteproyectosImpl extends UnicastRemoteObject implements GestionAnteproyectosInt {
 
     private static SeguimientoAnteproyectosInt objSeguimiento;
+    private NotificacionInt objNotificacionInt;
+    
     private ArrayList<FormatoTIA> formatosTIA;
     private ArrayList<FormatoTIB> formatosTIB;
     private ArrayList<FormatoTIC> formatosTIC;
@@ -123,15 +126,52 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
         System.out.println("\n\n Invocando a remitir Formato TI-D");
 
         if (objFormatoTID.getCodigoAnteproyecto() > 0) {
-            formatosTID.add(objFormatoTID);
+            formatosTID.add(objFormatoTID);         
             System.out.println("\n Formato TI-D remitido correctamente.");
+            
+           almacenarFormatos(objFormatoTID);
             return true;
         } else {
             System.out.println("\n Formato TI-D No remitido");
             return false;
         }
     }
+    
+    private void almacenarFormatos(FormatoTID objFormatoTID){
+        System.out.println("\n\n Invocando a Alamacenar formatos Servidor Seguimiento");
+        FormatoTIA objFormatosTIA = new FormatoTIA();
+        ArrayList<FormatoTIB> objFormatosTIB = new ArrayList<>();
+        FormatoTIC objFormatosTIC = new FormatoTIC();
 
+         if(objFormatoTID.getConceptoComite() == 1){
+             for(int i =0; i<formatosTIA.size(); i++){
+                 if(objFormatoTID.getCodigoAnteproyecto()== formatosTIA.get(i).getCodigoAnteproyecto()){
+                     objFormatosTIA = formatosTIA.get(i);
+                 }
+             }
+             for(int i =0; i<formatosTIB.size(); i++){
+                 if(objFormatoTID.getCodigoAnteproyecto()== formatosTIB.get(i).getCodigoAnteproyecto()){
+                     objFormatosTIB.add(formatosTIB.get(i));
+                 }
+             }
+             for(int i =0; i<formatosTIC.size(); i++){
+                 if(objFormatoTID.getCodigoAnteproyecto()== formatosTIC.get(i).getCodigoAnteproyecto()){
+                     objFormatosTIC = formatosTIC.get(i);
+                 }
+             }
+             if(objFormatosTIA.getCodigoAnteproyecto() !=-1 && objFormatosTIB.size()==2 && objFormatosTIC.getCodigoAnteproyecto() != -1){
+                
+                  String formatos = objFormatosTIA.toString() + "\n\n" + objFormatosTIB.get(0).toString()+ "\n\n" + objFormatosTIB.get(1).toString() + "\n\n" + objFormatosTIC.toString()+ "\n\n";
+             
+                 try { 
+                     objSeguimiento.almacenarFormatos(formatos);
+                 } catch (RemoteException ex) {
+                     Logger.getLogger(GestionAnteproyectosImpl.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             }
+                
+            }
+    }
     @Override
     public ArrayList<Integer> consultarConceptos(int prmCodAnteproyecto)throws RemoteException {
         System.out.println("\n\n Invocando Consultar Conceptos.");
@@ -192,9 +232,14 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
         return false;
     }
     
-    public void consultarReferenciaRemota(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
-		System.out.println(" ");
-		System.out.println("Desde consultarReferenciaRemotaDeNotificacion()...");
-		this.objSeguimiento = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoSeguimiento");
-	}
+    public void consultarReferenciaRemotaSeguimiento(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
+        System.out.println(" ");
+        System.out.println("Desde consultarReferenciaRemotaDeSegumiento()...");
+        this.objSeguimiento = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoSeguimiento");
+           }
+    public void consultarReferenciaRemotaNotificacion(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
+        System.out.println(" ");
+        System.out.println("Desde consultarReferenciaRemotaDeNotificacion()...");
+        this.objNotificacionInt = (NotificacionInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoNotificacion");
+    }
 }

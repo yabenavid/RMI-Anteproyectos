@@ -8,8 +8,14 @@ package cliente;
 
 import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
 import SGestionAnteproyectos.sop_rmi.GestionUsuariosInt;
+import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
+import SSeguimientoAnteproyectos.utilidades.UtilidadesRegistroS;
 import cliente.presentacion.jfrIniciarSesion;
+import cliente.sop_rmi.NotificacionImpl;
 import cliente.utilidades.UtilidadesRegistroC;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author YENNYFER
@@ -18,6 +24,7 @@ public class Conexion extends javax.swing.JFrame {
 
      private  GestionAnteproyectosInt objRemotoAnteproyectosInt;
      private GestionUsuariosInt objRemotoGestionUsuariosInt;
+     private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
      
      
     public Conexion() {
@@ -119,8 +126,19 @@ public class Conexion extends javax.swing.JFrame {
 
         objRemotoAnteproyectosInt = (GestionAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(varIp, varPuerto, "ObjetoRemotoAnteproyecto");
 
+        objSeguimientoAnteproyectosInt = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(varIp, varPuerto, "ObjetoRemotoSeguimiento");
+
+         try {
+             NotificacionImpl objNotificacionImpl = new NotificacionImpl();
+              UtilidadesRegistroS.RegistrarObjetoRemoto(objNotificacionImpl, varIp, varPuerto, "ObjetoRemotoNotificacion");
+    
+         } catch (RemoteException ex) {
+             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+        
         if (objRemotoAnteproyectosInt != null && objRemotoGestionUsuariosInt != null) {
-            jfrIniciarSesion iniciarSesion = new jfrIniciarSesion(objRemotoGestionUsuariosInt, objRemotoAnteproyectosInt);
+            jfrIniciarSesion iniciarSesion = new jfrIniciarSesion(objRemotoGestionUsuariosInt, objRemotoAnteproyectosInt, objSeguimientoAnteproyectosInt);
             iniciarSesion.setVisible(true);
             this.dispose();
         } else {

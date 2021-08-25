@@ -5,6 +5,14 @@
  */
 package cliente.presentacion;
 
+import SSeguimientoAnteproyectos.dto.Resolucion;
+import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
+import cliente.utilidades.UtilidadesGenerales;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author YENNYFER
@@ -14,10 +22,17 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
     /**
      * Creates new form RemitirResolucion
      */
+    private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
+    private UtilidadesGenerales utilidadesGenerales;
+    
     public RemitirResolucion() {
         initComponents();
     }
-
+    public RemitirResolucion(SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt) {
+        this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectosInt;
+        this.utilidadesGenerales = new UtilidadesGenerales();
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,11 +66,26 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
         jLabel3.setText("Código del Anteproyecto:");
 
         txtNumeroResolucion.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txtNumeroResolucion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroResolucionKeyTyped(evt);
+            }
+        });
 
         txtCodigoAnteproyecto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txtCodigoAnteproyecto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoAnteproyectoKeyTyped(evt);
+            }
+        });
 
         btnRemitir.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnRemitir.setText("Remitir");
+        btnRemitir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemitirActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Remitir Anteproyectos");
@@ -125,6 +155,40 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRemitirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemitirActionPerformed
+       
+        if (!txtNumeroResolucion.getText().isEmpty()) {
+            if (!jdtFechaRegistro.toString().isEmpty()) {
+                if(!txtCodigoAnteproyecto.getText().isEmpty()){
+                Resolucion resolucion = new Resolucion();
+                resolucion.setNumeroResolucion(Integer.parseInt(txtNumeroResolucion.getText()));
+                resolucion.setFechaRegistro(jdtFechaRegistro.toString());
+                resolucion.setCodigoAnteproyecto(Integer.parseInt(txtCodigoAnteproyecto.getText()));
+                try {
+                    objSeguimientoAnteproyectosInt.almacenarResolucion(resolucion);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(RemitirResolucion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor Codigo Anteproyecto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Fecha Registro", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor para Número de Resolución", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRemitirActionPerformed
+
+    private void txtNumeroResolucionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroResolucionKeyTyped
+           utilidadesGenerales.verificarSoloNumeros(evt);
+    }//GEN-LAST:event_txtNumeroResolucionKeyTyped
+
+    private void txtCodigoAnteproyectoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoAnteproyectoKeyTyped
+        utilidadesGenerales.verificarSoloNumeros(evt);
+    }//GEN-LAST:event_txtCodigoAnteproyectoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

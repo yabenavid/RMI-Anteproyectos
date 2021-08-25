@@ -17,6 +17,7 @@ public class FormatoTIB implements Serializable {
     private String observaciones;
     private String fechaEvaluacion;
     private String nombreEvaluador;
+    private int identificacionEvaluador;
 
     public FormatoTIB() {
         this.codigoAnteproyecto = -1;
@@ -24,6 +25,7 @@ public class FormatoTIB implements Serializable {
         this.observaciones = "";
         this.fechaEvaluacion = "";
         this.nombreEvaluador = "";
+        this.identificacionEvaluador = -1;
     }
     
     public FormatoTIB(int codigoAnteproyecto, int concepto, String observaciones, String fechaEvaluacion, String nombreEvaluador) {
@@ -72,6 +74,14 @@ public class FormatoTIB implements Serializable {
 
     public void setNombreEvaluador(String nombreEvaluador) {
         this.nombreEvaluador = nombreEvaluador;
+    }
+
+    public int getIdentificacionEvaluador() {
+        return identificacionEvaluador;
+    }
+
+    public void setIdentificacionEvaluador(int identificacionEvaluador) {
+        this.identificacionEvaluador = identificacionEvaluador;
     }
     
     

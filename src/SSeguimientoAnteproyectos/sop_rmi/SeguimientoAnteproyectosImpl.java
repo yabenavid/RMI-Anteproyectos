@@ -5,13 +5,12 @@
  */
 package SSeguimientoAnteproyectos.sop_rmi;
 
-import SSeguimientoAnteproyectos.dto.FormatoTIA;
-import SSeguimientoAnteproyectos.dto.FormatoTIB;
-import SSeguimientoAnteproyectos.dto.FormatoTIC;
+
 import SSeguimientoAnteproyectos.dto.Resolucion;
 import SSeguimientoAnteproyectos.utilidades.UtilidadesArchivosTxt;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
+
 
 
 /**
@@ -25,10 +24,10 @@ public class SeguimientoAnteproyectosImpl extends UnicastRemoteObject implements
     }
 
    @Override
-      public boolean almacenarFormatos(FormatoTIA objFormatoTIA,FormatoTIB objFormatoTIB,FormatoTIC objFormatoTIC) throws RemoteException{
+      public boolean almacenarFormatos(String formatos) throws RemoteException{
           System.out.println("\n\n Invocando a alamacenar Formatos");
-          if(objFormatoTIA.getCodigoAnteproyecto() >0 && objFormatoTIB.getCodigoAnteproyecto() >0 && objFormatoTIC.getCodigoAnteproyecto()>0){
-              String formatos = objFormatoTIA.toString() +"\n\n" + objFormatoTIB.toString()+"\n\n"+objFormatoTIC.toString()+"\n\n";
+          
+          if(!formatos.isEmpty()){
               UtilidadesArchivosTxt.escribirArchivo("historialTGI.txt",formatos);
               return true;
           }
@@ -58,8 +57,5 @@ public class SeguimientoAnteproyectosImpl extends UnicastRemoteObject implements
         String resoluciones = UtilidadesArchivosTxt.leerArchivo("listadoTGIAprobados.txt");
         return resoluciones;
     }
-    
-
-    
     
 }

@@ -29,7 +29,7 @@ public class Servidor1 {
 
         GestionAnteproyectosImpl objRemoto = new GestionAnteproyectosImpl();
         GestionUsuariosImpl objRemotoUsuariosImpl = new GestionUsuariosImpl();
-        objRemoto.consultarReferenciaRemota(direccionIpNS, numPuertoNS);
+        objRemoto.consultarReferenciaRemotaSeguimiento(direccionIpNS, numPuertoNS);
       
 
         try

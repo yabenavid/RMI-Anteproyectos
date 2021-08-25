@@ -8,6 +8,7 @@ package cliente.presentacion;
 import SGestionAnteproyectos.dto.Usuario;
 import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
 import SGestionAnteproyectos.sop_rmi.GestionUsuariosInt;
+import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
 import java.awt.HeadlessException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -30,15 +31,17 @@ public class jfrIniciarSesion extends javax.swing.JFrame {
      */
     private GestionUsuariosInt objGestionUsuariosInt;
     private GestionAnteproyectosInt objGestionAnteproyectosInt;
+    private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
     private Usuario usuario;
     
     public jfrIniciarSesion() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-     public jfrIniciarSesion(GestionUsuariosInt objGestionUsuariosInt, GestionAnteproyectosInt objGestionAnteproyectosInt) {
+     public jfrIniciarSesion(GestionUsuariosInt objGestionUsuariosInt, GestionAnteproyectosInt objGestionAnteproyectosInt, SeguimientoAnteproyectosInt objSeguimientoAnteproyectoInt) {
         this.objGestionUsuariosInt =  objGestionUsuariosInt;
         this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
+        this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectoInt;
          initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -179,19 +182,19 @@ public class jfrIniciarSesion extends javax.swing.JFrame {
         
             if (usuario.getId() != -1) {
                 if ("DIRECTOR".equals(usuario.getRol().toString())) {
-                    jfrmDirector director = new jfrmDirector(objGestionAnteproyectosInt);
+                    jfrmDirector director = new jfrmDirector(objGestionAnteproyectosInt, usuario.getId(), usuario.getUsuario());
                     director.setVisible(true);
                 } else if ("EVALUADOR".equals(usuario.getRol().toString())) {
-                    jfrmEvaluador evaluador = new jfrmEvaluador(objGestionAnteproyectosInt, usuario.getId());
+                    jfrmEvaluador evaluador = new jfrmEvaluador(objGestionAnteproyectosInt, usuario.getId(), usuario.getUsuario(), usuario.getNombre());
                     evaluador.setVisible(true);
                 } else if ("JEFE_DEPTO".equals(usuario.getRol().toString())) {
-                    jfrmJefeDepartamento jefeDepartamento = new jfrmJefeDepartamento(objGestionAnteproyectosInt);
+                    jfrmJefeDepartamento jefeDepartamento = new jfrmJefeDepartamento(objGestionAnteproyectosInt, usuario.getId(), usuario.getUsuario());
                     jefeDepartamento.setVisible(true);
                 } else if ("COORDINADOR".equals(usuario.getRol().toString())) {
-                    jfrmCoordinador coordinador = new jfrmCoordinador(objGestionAnteproyectosInt, objGestionUsuariosInt);
+                    jfrmCoordinador coordinador = new jfrmCoordinador(objGestionAnteproyectosInt, objGestionUsuariosInt,usuario.getId(), usuario.getUsuario());
                     coordinador.setVisible(true);
                 } else if ("DECANO".equals(usuario.getRol().toString())) {
-                    jfrmDecano decano = new jfrmDecano();
+                    jfrmDecano decano = new jfrmDecano(objSeguimientoAnteproyectosInt, usuario.getId(), usuario.getUsuario());
                     decano.setVisible(true);
                 }
             } else {

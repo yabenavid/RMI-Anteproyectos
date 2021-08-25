@@ -8,6 +8,7 @@ package cliente.presentacion;
 import SGestionAnteproyectos.dto.RolEnum;
 import SGestionAnteproyectos.sop_rmi.GestionUsuariosInt;
 import SGestionAnteproyectos.dto.Usuario;
+import cliente.utilidades.UtilidadesGenerales;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
      * Creates new form RegistrarDirector
      */
     private GestionUsuariosInt objGestionUsuariosInt;
-    
+    private UtilidadesGenerales utilidadesGenerales;
 
     
     public RegistrarUsuarios() {
@@ -33,7 +34,8 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
     public RegistrarUsuarios(GestionUsuariosInt objGestionUsuariosInt){    
         initComponents();
          this.objGestionUsuariosInt = objGestionUsuariosInt;
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+         this.utilidadesGenerales = new UtilidadesGenerales();
+        //((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
     }
 
     /**
@@ -61,7 +63,6 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
         txtContrasena = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDepartamento = new javax.swing.JTextField();
-        lbValidacionid = new javax.swing.JLabel();
 
         setBorder(null);
 
@@ -81,8 +82,8 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
 
         txtIdentificacion.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         txtIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtIdentificacionKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdentificacionKeyTyped(evt);
             }
         });
 
@@ -121,21 +122,31 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
 
         txtDepartamento.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
-        lbValidacionid.setText("-");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)
-                        .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxRol, 0, 344, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtIdentificacion)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
@@ -143,24 +154,15 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUsuario)
                             .addComponent(txtContrasena)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel7))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdentificacion)
-                            .addComponent(txtNombre)
-                            .addComponent(cbxRol, 0, 336, Short.MAX_VALUE)
                             .addComponent(txtDepartamento)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(lbValidacionid))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18))
+                            .addComponent(txtNombre))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,9 +177,7 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbValidacionid)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,7 +193,7 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -233,9 +233,6 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
                             if(!"".equals(txtContrasena.getText()) && txtContrasena.getText().length() >= 8){    
                                 
                                 Usuario usuario = new Usuario();
-                                //String rol = cbxRol.getSelectedItem().toString();
-                                //rol=rol.toUpperCase();
-                                //usuario.setRol(RolEnum.valueOf(rol));
                                 usuario.setRol(RolEnum.valueOf((String)cbxRol.getSelectedItem()));
                                 usuario.setId(Integer.parseInt(txtIdentificacion.getText()));
                                 usuario.setNombre(txtNombre.getText());
@@ -275,14 +272,9 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_bntGuardarActionPerformed
 
-    private void txtIdentificacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionKeyPressed
-        try {        
-            Integer.valueOf(txtIdentificacion.getText());
-            lbValidacionid.setText("");
-        } catch (NumberFormatException e) {
-            lbValidacionid.setText("Identificación inválida");
-        }
-    }//GEN-LAST:event_txtIdentificacionKeyPressed
+    private void txtIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionKeyTyped
+        utilidadesGenerales.verificarSoloNumeros(evt);
+    }//GEN-LAST:event_txtIdentificacionKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -297,7 +289,6 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbValidacionid;
     private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtDepartamento;
     private javax.swing.JTextField txtIdentificacion;

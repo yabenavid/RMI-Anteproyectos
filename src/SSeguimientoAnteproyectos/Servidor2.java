@@ -25,12 +25,12 @@ public class Servidor2 {
         System.out.println("Cual es el numero de puerto por el cual escucha el n_s");
         numPuertoNS = UtilidadesConsola.leerEntero();
 
-        SeguimientoAnteproyectosImpl objRemotoNotificacion = new SeguimientoAnteproyectosImpl();
+        SeguimientoAnteproyectosImpl objRemotoSeguimientoAnteproyectosImpl = new SeguimientoAnteproyectosImpl();
 
         try
         {
            UtilidadesRegistroS.arrancarNS(numPuertoNS);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoNotificacion, direccionNS, numPuertoNS, "ObjetoRemotoSeguimiento");
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoSeguimientoAnteproyectosImpl, direccionNS, numPuertoNS, "ObjetoRemotoSeguimiento");
         } catch (Exception e)
         {
             System.err.println("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());

@@ -8,13 +8,14 @@ package SSeguimientoAnteproyectos.sop_rmi;
 import SSeguimientoAnteproyectos.dto.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 /**
  *
  * @author YENNYFER, YEFERSON
  */
 public interface SeguimientoAnteproyectosInt extends Remote{
     
-    public boolean almacenarFormatos(FormatoTIA objFormatoTIA,FormatoTIB objFormatoTIB,FormatoTIC objFormatoTIC)throws RemoteException;
+    public boolean almacenarFormatos(String formatos)throws RemoteException;
     public boolean almacenarResolucion(Resolucion objResolucion)throws RemoteException;
     
     public String consultarFormatos()throws RemoteException;

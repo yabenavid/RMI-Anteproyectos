@@ -24,6 +24,7 @@ public class FormatoTIA implements Serializable {
     private String obetivosAnteproyecto;
     private int identificacionEvaluador1;
     private int identificacionEvaluador2;
+    private int idDirector;
 
 
     public FormatoTIA() {   
@@ -39,6 +40,7 @@ public class FormatoTIA implements Serializable {
         this.obetivosAnteproyecto = "";
         this.identificacionEvaluador1 = 0;
         this.identificacionEvaluador2 = 0;
+        this.idDirector = -1;
       
     }
 
@@ -149,6 +151,14 @@ public class FormatoTIA implements Serializable {
 
     public void setIdentificacionEvaluador2(int identificacionEvaluador2) {
         this.identificacionEvaluador2 = identificacionEvaluador2;
+    }
+
+    public int getIdDirector() {
+        return idDirector;
+    }
+
+    public void setIdDirector(int idDirector) {
+        this.idDirector = idDirector;
     }
 
 }

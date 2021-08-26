@@ -161,4 +161,9 @@ public class FormatoTIA implements Serializable {
         this.idDirector = idDirector;
     }
 
+    @Override
+    public String toString() {
+        return "FormatoTIA{" + "codigoAnteproyecto=" + codigoAnteproyecto + ", nombrePrograma=" + nombrePrograma + ", tituloAnteproyecto=" + tituloAnteproyecto + ", nombreEstudiante1=" + nombreEstudiante1 + ", codigoEstudiante1=" + codigoEstudiante1 + ", nombreEstudiante2=" + nombreEstudiante2 + ", codigoEstudiante2=" + codigoEstudiante2 + ", nombredirector=" + nombredirector + ", nombreCoDirector=" + nombreCoDirector + ", obetivosAnteproyecto=" + obetivosAnteproyecto + ", identificacionEvaluador1=" + identificacionEvaluador1 + ", identificacionEvaluador2=" + identificacionEvaluador2 + ", idDirector=" + idDirector + '}';
+    }
+
 }

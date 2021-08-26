@@ -29,13 +29,14 @@ public class jfrmJefeDepartamento extends javax.swing.JFrame {
        this.setLocationRelativeTo(null);
     }
      public jfrmJefeDepartamento(GestionAnteproyectosInt objGestionAnteproyectosInt, int identificacionJefe, String usuario) {
-        initComponents();
-       this.setResizable(false);
-       this.setLocationRelativeTo(null);
-       this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
-       this.identificacionJefe = identificacionJefe;
-       txtUsuario.setText(usuario);
        
+         this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
+         this.identificacionJefe = identificacionJefe;
+         initComponents();
+         this.setResizable(false);
+         this.setLocationRelativeTo(null);
+         txtUsuario.setText(usuario);
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -236,9 +237,15 @@ public class jfrmJefeDepartamento extends javax.swing.JFrame {
 
         pnlPrincipal.removeAll();
         pnlPrincipal.repaint();
-        ListarFormatoTIC formato = new ListarFormatoTIC(objGestionAnteproyectosInt, identificacionJefe);
-        pnlPrincipal.add(formato);
-        formato.show();
+        ListarFormatoTIC formato;
+        try {
+            formato = new ListarFormatoTIC(objGestionAnteproyectosInt, identificacionJefe);
+            pnlPrincipal.add(formato);
+            formato.show();
+        } catch (RemoteException ex) {
+            Logger.getLogger(jfrmJefeDepartamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnListarMouseClicked
 
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked

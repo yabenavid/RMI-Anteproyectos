@@ -43,17 +43,13 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
     }
 
     @Override
-    public int solicitarCodigo() {
-        Logger.getLogger(GestionAnteproyectosImpl.class.getName()).log(Level.INFO, null,"Invocando a solicitar código");
-        //System.out.println("\n\n Invocando a solicitar codigo");
-        
+    public int solicitarCodigoAnteproyectos() {       
+        System.out.println("\n\n Invocando a solicitar código");     
         String cod;
         int resultado;
         cod = "" + anioVigente + periodoActual + numeroSecuencial3 + numeroSecuencial2 + numeroSecuencial1;
-
         // Actualizando la secuencia
-        actualizarNumerosSecuenciales();
-        
+        actualizarNumerosSecuenciales();        
         resultado = Integer.parseInt(cod);
         return resultado;
     }
@@ -96,10 +92,23 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
     @Override
     public boolean remitirFormatoTIB(FormatoTIB objFormatoTIB) throws RemoteException {
         System.out.println("\n\n Invocando a remitir Formato TI-B");
-
+        int codigoAnteproyecto = objFormatoTIB.getCodigoAnteproyecto();
+        ArrayList<String> evaluadores = new ArrayList<>();
         if (objFormatoTIB.getCodigoAnteproyecto() > 0) {
-            formatosTIB.add(objFormatoTIB);
+           formatosTIB.add(objFormatoTIB);
             System.out.println("\nFormato TI-B remitido correctamente.");
+            
+            // Si ya se registraron los dos formatos TIB, hacer callback
+            for(int i = 0; i < formatosTIB.size(); i++){
+                if(codigoAnteproyecto == formatosTIB.get(i).getCodigoAnteproyecto()){
+                    evaluadores.add(formatosTIB.get(i).getNombreEvaluador());
+                }
+            }
+            if(evaluadores.size() == 2){
+              
+            hacerCallback(codigoAnteproyecto, evaluadores.get(0), evaluadores.get(1));
+            }
+            
             return true;
         } else {
             System.out.println("\nFormato TI-B No remitido");
@@ -231,15 +240,25 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
         }
         return false;
     }
-    
+    @Override
+    public void registrarCallback (NotificacionInt objNotificacionInt) throws RemoteException{
+        System.out.println("\n\n Invocando registrar Callback");
+        this.objNotificacionInt = objNotificacionInt;
+    }
+    @Override
+    public void hacerCallback (int codigoAnteproyecto, String evaluador1, String evaluador2) throws  RemoteException{
+         System.out.println("\n\n Invocando Hacer Callback");
+         NotificacionDTO objNotificacionDTO = new NotificacionDTO(codigoAnteproyecto, evaluador1, evaluador2);
+         this.objNotificacionInt.enviarNotificacion(objNotificacionDTO);
+    }
     public void consultarReferenciaRemotaSeguimiento(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
         System.out.println(" ");
         System.out.println("Desde consultarReferenciaRemotaDeSegumiento()...");
         this.objSeguimiento = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoSeguimiento");
            }
-    public void consultarReferenciaRemotaNotificacion(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
-        System.out.println(" ");
-        System.out.println("Desde consultarReferenciaRemotaDeNotificacion()...");
-        this.objNotificacionInt = (NotificacionInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoNotificacion");
-    }
+//    public void consultarReferenciaRemotaNotificacion(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
+//        System.out.println(" ");
+//        System.out.println("Desde consultarReferenciaRemotaDeNotificacion()...");
+//        this.objNotificacionInt = (NotificacionInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoNotificacion");
+//    }
 }

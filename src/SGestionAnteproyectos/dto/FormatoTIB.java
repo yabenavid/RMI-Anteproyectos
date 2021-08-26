@@ -83,6 +83,11 @@ public class FormatoTIB implements Serializable {
     public void setIdentificacionEvaluador(int identificacionEvaluador) {
         this.identificacionEvaluador = identificacionEvaluador;
     }
+
+    @Override
+    public String toString() {
+        return "FormatoTIB{" + "codigoAnteproyecto=" + codigoAnteproyecto + ", concepto=" + concepto + ", observaciones=" + observaciones + ", fechaEvaluacion=" + fechaEvaluacion + ", nombreEvaluador=" + nombreEvaluador + ", identificacionEvaluador=" + identificacionEvaluador + '}';
+    }
     
     
     

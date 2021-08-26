@@ -194,7 +194,7 @@ public class jfrIniciarSesion extends javax.swing.JFrame {
                     jfrmCoordinador coordinador = new jfrmCoordinador(objGestionAnteproyectosInt, objGestionUsuariosInt,usuario.getId(), usuario.getUsuario());
                     coordinador.setVisible(true);
                 } else if ("DECANO".equals(usuario.getRol().toString())) {
-                    jfrmDecano decano = new jfrmDecano(objSeguimientoAnteproyectosInt, usuario.getId(), usuario.getUsuario());
+                    jfrmDecano decano = new jfrmDecano(objGestionAnteproyectosInt,objSeguimientoAnteproyectosInt, usuario.getId(), usuario.getUsuario());
                     decano.setVisible(true);
                 }
             } else {

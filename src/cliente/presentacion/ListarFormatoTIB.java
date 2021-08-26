@@ -82,9 +82,8 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
             Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(!formatosTIB.isEmpty() && codigoAnteproyectos.size() > 0){
-        for (int i = 0; i <codigoAnteproyectos.size(); i++) {
-           
-            if(codigoAnteproyectos.get(i).equals(formatosTIB.get(i).getCodigoAnteproyecto())){
+        for (int i = 0; i <formatosTIB.size(); i++) {
+           if((identificacionEvaluador == formatosTIB.get(i).getIdentificacionEvaluador())){          
             FormatoTIB objFormatoTIB = formatosTIB.get(i);
             String[] fila = {String.valueOf(objFormatoTIB.getCodigoAnteproyecto()),String.valueOf(objFormatoTIB.getConcepto()),objFormatoTIB.getObservaciones(),objFormatoTIB.getFechaEvaluacion(),objFormatoTIB.getNombreEvaluador(), objFormatoTIB.getIdentificacionEvaluador() + ""};
             model.addRow(fila);

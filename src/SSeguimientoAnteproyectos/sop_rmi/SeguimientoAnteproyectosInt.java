@@ -15,8 +15,13 @@ import java.util.ArrayList;
  */
 public interface SeguimientoAnteproyectosInt extends Remote{
     
+    public int solicitarCodigoResolucion () throws RemoteException;
+    
     public boolean almacenarFormatos(String formatos)throws RemoteException;
     public boolean almacenarResolucion(Resolucion objResolucion)throws RemoteException;
+    
+    public void almacenarNumeroResolucion(int numeroResolucion) throws RemoteException;
+    public boolean consultarNumerosResolucion(int numeroResolucion) throws RemoteException;
     
     public String consultarFormatos()throws RemoteException;
     public String consultarResoluciones()throws RemoteException;

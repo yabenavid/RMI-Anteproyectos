@@ -14,6 +14,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -168,7 +169,9 @@ private void inicializarTablaUsuarios(){
             usuario.setUsuario(tblUsuarios.getValueAt(fila, 4).toString());
             usuario.setContrasena(tblUsuarios.getValueAt(fila, 5).toString());
             
-            objGestionUsuariosInt.actualizarUsuarios(usuario);
+            if(objGestionUsuariosInt.actualizarUsuarios(usuario)){
+                JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }

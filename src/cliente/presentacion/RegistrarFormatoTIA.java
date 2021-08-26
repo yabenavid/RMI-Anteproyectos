@@ -276,7 +276,7 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
         objFormatosTIA.setIdentificacionEvaluador2(0);
         objFormatosTIA.setIdDirector(identificacionDirector);
         try {
-            objFormatosTIA.setCodigoAnteproyecto(objAnteproyectosInt.solicitarCodigo());
+            objFormatosTIA.setCodigoAnteproyecto(objAnteproyectosInt.solicitarCodigoAnteproyectos());
             if(objAnteproyectosInt.remitirFormatoTIA(objFormatosTIA)){
                 JOptionPane.showMessageDialog(null, "Formato TIA registrado con éxito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
                 btnLimpiar.doClick();

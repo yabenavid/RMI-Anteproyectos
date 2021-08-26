@@ -130,7 +130,8 @@ public class Conexion extends javax.swing.JFrame {
 
          try {
              NotificacionImpl objNotificacionImpl = new NotificacionImpl();
-              UtilidadesRegistroS.RegistrarObjetoRemoto(objNotificacionImpl, varIp, varPuerto, "ObjetoRemotoNotificacion");
+             objRemotoAnteproyectosInt.registrarCallback(objNotificacionImpl);
+              //UtilidadesRegistroS.RegistrarObjetoRemoto(objNotificacionImpl, varIp, varPuerto, "ObjetoRemotoNotificacion");
     
          } catch (RemoteException ex) {
              Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

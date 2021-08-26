@@ -72,5 +72,10 @@ public class FormatoTID implements Serializable{
     public void setIdCoordinador(int idCoordinador) {
         this.idCoordinador = idCoordinador;
     }
+
+    @Override
+    public String toString() {
+        return "FormatoTID{" + "codigoAnteproyecto=" + codigoAnteproyecto + ", estructura=" + estructura + ", conceptoComite=" + conceptoComite + ", observaciones=" + observaciones + ", idCoordinador=" + idCoordinador + '}';
+    }
     
 }

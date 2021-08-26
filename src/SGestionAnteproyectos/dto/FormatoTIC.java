@@ -73,6 +73,11 @@ public class FormatoTIC implements Serializable{
         this.jefeDeto = jefeDeto;
     }
 
+    @Override
+    public String toString() {
+        return "FormatoTIC{" + "codigoAnteproyecto=" + codigoAnteproyecto + ", estructura=" + estructura + ", conceptoDepto=" + conceptoDepto + ", Observaciones=" + Observaciones + ", jefeDeto=" + jefeDeto + '}';
+    }
+
     
     
 }

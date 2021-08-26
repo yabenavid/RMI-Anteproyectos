@@ -266,6 +266,7 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
                         }
                         objFormatosTIC.setConceptoDepto(Integer.parseInt(jSpinnerConcepto.getValue().toString()));
                         objFormatosTIC.setObservaciones(txtObservaciones.getText());
+                        objFormatosTIC.setJefeDeto(idJefeDepto);
                         try {
                             if (!validarAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()))) {
                                 if (validarConceptos()) {

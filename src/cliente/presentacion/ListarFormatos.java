@@ -179,8 +179,9 @@ public class ListarFormatos extends javax.swing.JInternalFrame {
         model.addColumn("Código Anteproyecto");
         model.addColumn("Concepto");
         model.addColumn("Observaciones"); 
-        model.addColumn("Fecha de evaluación");        
-        model.addColumn("Nombre de evaluador");
+        model.addColumn("Fecha evaluación");        
+        model.addColumn("Nombre evaluador");
+        model.addColumn("Identificación evaluador");    
         this.jtbFormatosTIB.setModel(model);
     }
  private void llenarTablaFormatosTIB() {
@@ -195,7 +196,7 @@ public class ListarFormatos extends javax.swing.JInternalFrame {
     
         for (int i = 0; i <formatosTIB.size(); i++) {
             FormatoTIB objFormatoTIB = formatosTIB.get(i);
-            String[] fila = {String.valueOf(objFormatoTIB.getCodigoAnteproyecto()),String.valueOf(objFormatoTIB.getConcepto()),objFormatoTIB.getObservaciones(),objFormatoTIB.getFechaEvaluacion(),objFormatoTIB.getNombreEvaluador() + ""};
+            String[] fila = {String.valueOf(objFormatoTIB.getCodigoAnteproyecto()),String.valueOf(objFormatoTIB.getConcepto()),objFormatoTIB.getObservaciones(),objFormatoTIB.getFechaEvaluacion(),objFormatoTIB.getNombreEvaluador(), objFormatoTIB.getIdentificacionEvaluador() + ""};
             model.addRow(fila);
         }
     }

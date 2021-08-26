@@ -244,7 +244,8 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         try {
             objFormatoTIBs = objAnteproyectosInt.consultarFormatosTIB();
             for (int i = 0; i < objFormatoTIBs.size(); i++) {
-                if (objFormatoTIBs.get(i).getCodigoAnteproyecto() == idAnteproyecto && objFormatoTIBs.get(i).getIdentificacionEvaluador() == identificacionEvaluador) {
+                if (objFormatoTIBs.get(i).getCodigoAnteproyecto() == idAnteproyecto &&
+                        objFormatoTIBs.get(i).getIdentificacionEvaluador() == identificacionEvaluador) {
                     return true;
                 }
             }

@@ -22,5 +22,5 @@ public interface GestionUsuariosInt extends Remote {
     
     public ArrayList<Usuario> listarUsuarios()throws RemoteException;
     
-    public void actualizarUsuarios (Usuario usuario) throws  RemoteException;
+    public boolean actualizarUsuarios (Usuario usuario) throws  RemoteException;
 }

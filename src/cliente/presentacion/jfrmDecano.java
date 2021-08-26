@@ -21,6 +21,7 @@ public class jfrmDecano extends javax.swing.JFrame {
      * Creates new form jfrmDecano
      */
     private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
+    private  GestionAnteproyectosInt obGestionAnteproyectosInt;
     private int idDecano;
     private String usuario;
     
@@ -28,11 +29,14 @@ public class jfrmDecano extends javax.swing.JFrame {
     public jfrmDecano() {
         initComponents();
     }
-    public jfrmDecano(SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt, int idDecano, String usuario) {
+    public jfrmDecano(GestionAnteproyectosInt objGestionAnteproyectosInt, SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt, int idDecano, String usuario) {
         initComponents();
+        this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectosInt;
         this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectosInt;
         this.idDecano = idDecano;
         this.usuario = usuario;
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -58,6 +62,7 @@ public class jfrmDecano extends javax.swing.JFrame {
         pnl1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 204));
 
@@ -200,7 +205,7 @@ public class jfrmDecano extends javax.swing.JFrame {
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,7 +220,7 @@ public class jfrmDecano extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -225,9 +230,15 @@ public class jfrmDecano extends javax.swing.JFrame {
 
         pnl1.removeAll();
         pnl1.repaint();
-        RemitirResolucion registrar = new RemitirResolucion(objSeguimientoAnteproyectosInt);
-        pnl1.add(registrar);
-        registrar.show();
+        RemitirResolucion registrar;
+        try {
+            registrar = new RemitirResolucion(objSeguimientoAnteproyectosInt, obGestionAnteproyectosInt);
+            pnl1.add(registrar);
+            registrar.show();
+        } catch (RemoteException ex) {
+            Logger.getLogger(jfrmDecano.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_btnRemitirResolucionMouseClicked
 
     private void btnHistorialTGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialTGIMouseClicked

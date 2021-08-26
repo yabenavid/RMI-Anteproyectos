@@ -52,5 +52,10 @@ public class Resolucion implements Serializable{
     public void setCodigoAnteproyecto(int codigoAnteproyecto) {
         this.codigoAnteproyecto = codigoAnteproyecto;
     }
+
+    @Override
+    public String toString() {
+        return "Resolucion{" + "numeroResolucion=" + numeroResolucion + ", fechaRegistro=" + fechaRegistro + ", codigoAnteproyecto=" + codigoAnteproyecto + '}';
+    }
     
 }

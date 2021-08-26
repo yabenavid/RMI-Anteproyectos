@@ -6,6 +6,7 @@
 package SGestionAnteproyectos.sop_rmi;
 
 import SGestionAnteproyectos.dto.*;
+import cliente.sop_rmi.NotificacionInt;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 public interface GestionAnteproyectosInt extends Remote{
     
-    public int solicitarCodigo() throws RemoteException;
+    public int solicitarCodigoAnteproyectos() throws RemoteException;
 
     public boolean remitirFormatoTIA(FormatoTIA objFormatoTIA) throws RemoteException;
     public boolean remitirFormatoTIB(FormatoTIB objFormatoTIB) throws RemoteException;
@@ -32,4 +33,8 @@ public interface GestionAnteproyectosInt extends Remote{
 
     
     public boolean asignarEvaluador (int codigoAnteproyecto, int identificacionEvaluador)throws  RemoteException;
+    
+    public void registrarCallback (NotificacionInt objNotificacionInt) throws RemoteException;
+    
+    public void hacerCallback (int codigoAnteproyecto, String evaluador1, String evaluador2) throws  RemoteException;
 }

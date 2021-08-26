@@ -31,14 +31,15 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
     public ListarFormatoTIC() {
         initComponents();
     }
-       public ListarFormatoTIC(GestionAnteproyectosInt objGestionAnteproyectosInt, int idJefeDpto) {
-        initComponents();
-        this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
-        this. utilidadesGenerales = new UtilidadesGenerales();
-        this.idJefeDepto = idJefeDpto;
-        formatosTIC = new ArrayList<>();
-        inicializarTablaFormatosTIC();
-        llenarTablaFormatosTIC();
+       public ListarFormatoTIC(GestionAnteproyectosInt objGestionAnteproyectosInt, int idJefeDpto) throws  RemoteException{
+           this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
+           this.utilidadesGenerales = new UtilidadesGenerales();
+           this.idJefeDepto = idJefeDpto;
+           initComponents();
+
+           formatosTIC = new ArrayList<>();
+           inicializarTablaFormatosTIC();
+           llenarTablaFormatosTIC();
     }
 
     /**

@@ -62,18 +62,20 @@ public class GestionUsuariosImpl extends UnicastRemoteObject implements GestionU
     }
     
     @Override
-    public void actualizarUsuarios (Usuario objUsuario) throws  RemoteException{
+    public boolean actualizarUsuarios (Usuario objUsuario) throws  RemoteException{
          System.out.println("\n\n Invocando a actualizar usuario");
          for (int i =0; i<usuarios.size(); i++){
              if(objUsuario.getId() == usuarios.get(i).getId()){
                  usuarios.get(i).setId(objUsuario.getId());
                  usuarios.get(i).setNombre(objUsuario.getNombre());
-                 usuarios.get(i).setRol(RolEnum.valueOf(objUsuario.getRol().toString()));
+                 usuarios.get(i).setRol(objUsuario.getRol());
                  usuarios.get(i).setDepartamento(objUsuario.getDepartamento());
                  usuarios.get(i).setUsuario(objUsuario.getUsuario());
                  usuarios.get(i).setContrasena(objUsuario.getContrasena());
+                 return true;
              }
          }
+         return false;
     }
 
 }

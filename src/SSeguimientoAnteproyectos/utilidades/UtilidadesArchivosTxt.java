@@ -75,7 +75,7 @@ public class UtilidadesArchivosTxt {
     }
 
     public static void escribirArchivo(String nombreArchivo, String prmTexto)  {
-        File varArchivo = new File(nombreArchivo + ".txt");
+        File varArchivo = new File(nombreArchivo);
         FileWriter varEscritor;
         BufferedWriter varBufferEscritor;
         if (varArchivo.exists() == false) {

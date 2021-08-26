@@ -5,10 +5,13 @@
  */
 package cliente.presentacion;
 
+import SGestionAnteproyectos.dto.FormatoTID;
+import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
 import SSeguimientoAnteproyectos.dto.Resolucion;
 import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
 import cliente.utilidades.UtilidadesGenerales;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,15 +26,19 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
      * Creates new form RemitirResolucion
      */
     private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
+    private GestionAnteproyectosInt objGestionAnteproyectosInt;
     private UtilidadesGenerales utilidadesGenerales;
     
     public RemitirResolucion() {
         initComponents();
     }
-    public RemitirResolucion(SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt) {
+    public RemitirResolucion(SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt, GestionAnteproyectosInt objGestionAteproyectosInt) throws  RemoteException{
         this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectosInt;
+        this.objGestionAnteproyectosInt = objGestionAteproyectosInt;
         this.utilidadesGenerales = new UtilidadesGenerales();
         initComponents();
+        consultarCodigosAnteproyectos();
+        txtNumeroResolucion.setText(String.valueOf(objSeguimientoAnteproyectosInt.solicitarCodigoResolucion()));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,6 +58,7 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
         jdtFechaRegistro = new com.toedter.calendar.JDateChooser();
         btnRemitir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        cbxCodigosAnteproyectos = new javax.swing.JComboBox<>();
 
         setBorder(null);
 
@@ -79,6 +87,8 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
             }
         });
 
+        jdtFechaRegistro.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
         btnRemitir.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnRemitir.setText("Remitir");
         btnRemitir.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +99,8 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Remitir Anteproyectos");
+
+        cbxCodigosAnteproyectos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,9 +119,11 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jdtFechaRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                            .addComponent(txtNumeroResolucion)
-                            .addComponent(txtCodigoAnteproyecto))))
+                            .addComponent(cbxCodigosAnteproyectos, 0, 233, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jdtFechaRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                .addComponent(txtNumeroResolucion)
+                                .addComponent(txtCodigoAnteproyecto)))))
                 .addGap(67, 67, 67))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 181, Short.MAX_VALUE)
@@ -122,24 +136,27 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jLabel4)
                 .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNumeroResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46))
-                            .addComponent(jdtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNumeroResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jdtFechaRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel2)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel3)))
-                .addGap(59, 59, 59)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(txtCodigoAnteproyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(cbxCodigosAnteproyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addComponent(btnRemitir)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,11 +182,19 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
                 resolucion.setNumeroResolucion(Integer.parseInt(txtNumeroResolucion.getText()));
                 resolucion.setFechaRegistro(jdtFechaRegistro.toString());
                 resolucion.setCodigoAnteproyecto(Integer.parseInt(txtCodigoAnteproyecto.getText()));
-                try {
-                    objSeguimientoAnteproyectosInt.almacenarResolucion(resolucion);
-                } catch (RemoteException ex) {
-                    Logger.getLogger(RemitirResolucion.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    try {
+                        if (!validarNumeroResulucion(Integer.parseInt(txtCodigoAnteproyecto.getText()))) {
+                            if (objSeguimientoAnteproyectosInt.almacenarResolucion(resolucion)) {
+                                JOptionPane.showMessageDialog(null, "Anteproyecto Aprobado", "Información", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Resolución no remitida", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El número de resolución ya se encuentra Resgistrado", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                        }
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(RemitirResolucion.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Por favor Ingrese un valor Codigo Anteproyecto", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
@@ -189,10 +214,38 @@ public class RemitirResolucion extends javax.swing.JInternalFrame {
     private void txtCodigoAnteproyectoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoAnteproyectoKeyTyped
         utilidadesGenerales.verificarSoloNumeros(evt);
     }//GEN-LAST:event_txtCodigoAnteproyectoKeyTyped
+    private void consultarCodigosAnteproyectos() throws RemoteException {
 
+        ArrayList<FormatoTID> objFormatoTIDs;
+        objFormatoTIDs = objGestionAnteproyectosInt.consultarFormatosTID();
 
+        if (!objFormatoTIDs.isEmpty()) {
+
+            for (int i = 0; i < objFormatoTIDs.size(); i++) {
+                if (objFormatoTIDs.get(i).getConceptoComite() == 1) {
+                    cbxCodigosAnteproyectos.addItem(String.valueOf(objFormatoTIDs.get(i).getCodigoAnteproyecto()));
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se cuanta con Anteproyectos remitidos por el comite", "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }
+    }
+    
+    private boolean validarNumeroResulucion(int numeroResolucion){
+        
+        try {
+            if (objSeguimientoAnteproyectosInt.consultarNumerosResolucion(Integer.parseInt(txtNumeroResolucion.getText()))) {
+                return true;
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(RemitirResolucion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRemitir;
+    private javax.swing.JComboBox<String> cbxCodigosAnteproyectos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -25,6 +25,7 @@ public class Conexion extends javax.swing.JFrame {
      private  GestionAnteproyectosInt objRemotoAnteproyectosInt;
      private GestionUsuariosInt objRemotoGestionUsuariosInt;
      private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
+     private NotificacionImpl objNotificacionImpl;
      
      
     public Conexion() {
@@ -127,20 +128,16 @@ public class Conexion extends javax.swing.JFrame {
 
         objRemotoAnteproyectosInt = (GestionAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(varIp, varPuerto, "ObjetoRemotoAnteproyecto");
 
-        objSeguimientoAnteproyectosInt = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(varIp, varPuerto, "ObjetoRemotoSeguimiento");
-
+        objSeguimientoAnteproyectosInt = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(varIp, varPuerto, "ObjetoRemotoSeguimiento");        
          try {
-             NotificacionImpl objNotificacionImpl = new NotificacionImpl();
-             objRemotoAnteproyectosInt.registrarCallback(objNotificacionImpl);
-              //UtilidadesRegistroS.RegistrarObjetoRemoto(objNotificacionImpl, varIp, varPuerto, "ObjetoRemotoNotificacion");
-    
+              objNotificacionImpl = new NotificacionImpl();
+             objRemotoAnteproyectosInt.registrarCallback(objNotificacionImpl);  
+               
          } catch (RemoteException ex) {
              Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
          }
-        
-        
         if (objRemotoAnteproyectosInt != null && objRemotoGestionUsuariosInt != null) {
-            jfrIniciarSesion iniciarSesion = new jfrIniciarSesion(objRemotoGestionUsuariosInt, objRemotoAnteproyectosInt, objSeguimientoAnteproyectosInt);
+            jfrIniciarSesion iniciarSesion = new jfrIniciarSesion(objRemotoGestionUsuariosInt, objRemotoAnteproyectosInt, objSeguimientoAnteproyectosInt, objNotificacionImpl);
             iniciarSesion.setVisible(true);
             this.dispose();
         } else {

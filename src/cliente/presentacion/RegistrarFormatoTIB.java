@@ -69,7 +69,6 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtIdenEvaluador = new javax.swing.JTextField();
 
-        setBorder(null);
         setTitle("Registro");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/businessregistration_signpen_negocio_inscripcio_2358.png"))); // NOI18N
 
@@ -95,7 +94,9 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
 
         txtNombreEvaluador.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
+        bntGuardar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         bntGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/guardar2.png"))); // NOI18N
+        bntGuardar.setText("Guardar");
         bntGuardar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         bntGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,9 +113,12 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
         txtObservaciones.setRows(5);
         jScrollPane1.setViewportView(txtObservaciones);
 
+        jSpinnerConceptos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jSpinnerConceptos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1, 1));
 
+        btnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/icons8_ccleaner_32px.png"))); // NOI18N
+        btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -161,25 +165,25 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
                             .addComponent(dtcFechaEvalucion, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))))
                 .addGap(27, 27, 27))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(196, 196, 196)
+                .addGap(181, 181, 181)
                 .addComponent(jLabel1)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel1)
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(cbxCodigoAnteproyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerConceptos, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                        .addComponent(jSpinnerConceptos))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,7 +206,7 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
                             .addComponent(bntGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addComponent(jLabel5))
-                .addGap(36, 36, 36))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

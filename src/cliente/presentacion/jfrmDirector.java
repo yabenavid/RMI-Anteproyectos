@@ -6,7 +6,12 @@
 package cliente.presentacion;
 
 import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
-
+import cliente.sop_rmi.NotificacionImpl;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ds.desktop.notify.DesktopNotify;
+import java.util.ArrayList;
 /**
  *
  * @author YENNYFER
@@ -18,6 +23,9 @@ public class jfrmDirector extends javax.swing.JFrame {
      */
     private GestionAnteproyectosInt objAnteproyectosInt;
     private int identificacionDirector;
+    private NotificacionImpl objnNotificacionImpl;
+    
+
     private String usuario;
     
 // Examinar contructor por deecto
@@ -25,14 +33,18 @@ public class jfrmDirector extends javax.swing.JFrame {
        initComponents();
    }
     
-    public jfrmDirector(GestionAnteproyectosInt objGestionAnteproyectosInt, int identificaciondirector, String usuario) {
+    public jfrmDirector(GestionAnteproyectosInt objGestionAnteproyectosInt,NotificacionImpl objNotificacionImpl, int identificaciondirector, String usuario) throws  RemoteException{
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.objAnteproyectosInt = objGestionAnteproyectosInt;
         this.identificacionDirector = identificaciondirector;
+        this.objnNotificacionImpl = objNotificacionImpl;
         this.usuario = usuario;
         txtUsuario.setText(usuario);
+        
+        this.objAnteproyectosInt.directorActual(identificaciondirector);
+       mostrarNotifaciones();
     }
 
     /**
@@ -58,6 +70,9 @@ public class jfrmDirector extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JLabel();
         pnl1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -211,20 +226,45 @@ public class jfrmDirector extends javax.swing.JFrame {
                 .addComponent(btnListarFormatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnl1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel8.setText("Laboratorio de sistemas Distribuidos");
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel10.setText("Yennyfer Aviles - Yeferson Benavidez");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/escudo-azul.png"))); // NOI18N
+        jLabel9.setText("jLabel8");
 
         javax.swing.GroupLayout pnl1Layout = new javax.swing.GroupLayout(pnl1);
         pnl1.setLayout(pnl1Layout);
         pnl1Layout.setHorizontalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(109, 109, 109))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pnl1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,7 +284,14 @@ public class jfrmDirector extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void mostrarNotifaciones ()throws  RemoteException{
+        ArrayList<String> auxMensaje = this.objnNotificacionImpl.consultarMensaje(identificacionDirector);
+        if (!auxMensaje.isEmpty()) {
+            for (int i = 0; i < auxMensaje.size(); i++) {
+                DesktopNotify.showDesktopMessage("Notificación", auxMensaje.get(i), DesktopNotify.TIP, 10000L);
+            }
+        }
+    }
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
      
         pnl1.removeAll();
@@ -321,12 +368,15 @@ public class jfrmDirector extends javax.swing.JFrame {
     private javax.swing.JPanel btnRegistrar;
     private javax.swing.JPanel btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel pnl1;
     private javax.swing.JLabel txtUsuario;

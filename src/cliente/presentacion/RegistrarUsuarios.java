@@ -94,6 +94,7 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
 
         bntGuardar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         bntGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/guardar2.png"))); // NOI18N
+        bntGuardar.setText("Guardar");
         bntGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntGuardarActionPerformed(evt);
@@ -106,7 +107,9 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
         cbxRol.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         cbxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DIRECTOR", "EVALUADOR", "JEFE_DEPTO", "COORDINADOR", "DECANO" }));
 
+        btnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente/presentacion/imgs/icons8_ccleaner_32px.png"))); // NOI18N
+        btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -162,8 +165,8 @@ public class RegistrarUsuarios extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bntGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(

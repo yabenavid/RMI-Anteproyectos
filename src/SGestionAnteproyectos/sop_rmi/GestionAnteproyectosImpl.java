@@ -251,9 +251,9 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
         System.out.println("\n\n Invocando Hacer Callback");
         ArrayList<FormatoTIA> formatoTIAs = consultarFormatosTIA();
         for (int i = 0; i < formatoTIAs.size(); i++) {
-            if (formatoTIAs.get(i).getCodigoAnteproyecto() == codigoAnteproyecto && formatoTIAs.get(i).getIdDirector() ==directorActual ) {
+            if (formatoTIAs.get(i).getCodigoAnteproyecto() == codigoAnteproyecto) {
                 NotificacionDTO objNotificacionDTO = new NotificacionDTO(codigoAnteproyecto, evaluador1, evaluador2);
-                this.objNotificacionInt.enviarNotificacion(objNotificacionDTO);
+                this.objNotificacionInt.enviarNotificacion(objNotificacionDTO, formatoTIAs.get(i).getIdDirector());
             }
         }
     }

@@ -8,10 +8,14 @@ import SGestionAnteproyectos.sop_rmi.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import SGestionAnteproyectos.dto.NotificacionDTO;
+import cliente.dto.Mensaje;
+import java.util.ArrayList;
 /**
  *
  * @author YENNYFER
  */
 public interface NotificacionInt extends Remote{
-    public String enviarNotificacion(NotificacionDTO objNotificacion) throws RemoteException;
+    public String enviarNotificacion(NotificacionDTO objNotificacion, int identificacionDirector) throws RemoteException;
+    public  ArrayList<String>  consultarMensaje(int identificacionDirector)throws RemoteException;
+    public void almacenarMensajes(Mensaje mensaje) throws RemoteException;
 }

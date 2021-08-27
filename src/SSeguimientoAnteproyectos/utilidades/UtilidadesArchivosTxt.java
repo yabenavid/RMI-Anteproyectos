@@ -86,7 +86,7 @@ public class UtilidadesArchivosTxt {
             }
         }
         try {
-            varEscritor = new FileWriter(varArchivo);
+            varEscritor = new FileWriter(varArchivo.getAbsoluteFile(),true);
             varBufferEscritor = new BufferedWriter(varEscritor);
             varBufferEscritor.write(prmTexto);
             varBufferEscritor.flush();

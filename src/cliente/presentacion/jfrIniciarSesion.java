@@ -9,6 +9,7 @@ import SGestionAnteproyectos.dto.Usuario;
 import SGestionAnteproyectos.sop_rmi.GestionAnteproyectosInt;
 import SGestionAnteproyectos.sop_rmi.GestionUsuariosInt;
 import SSeguimientoAnteproyectos.sop_rmi.SeguimientoAnteproyectosInt;
+import cliente.sop_rmi.NotificacionImpl;
 import java.awt.HeadlessException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -32,16 +33,18 @@ public class jfrIniciarSesion extends javax.swing.JFrame {
     private GestionUsuariosInt objGestionUsuariosInt;
     private GestionAnteproyectosInt objGestionAnteproyectosInt;
     private SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt;
+    private NotificacionImpl objNotificacionImpl;
     private Usuario usuario;
     
     public jfrIniciarSesion() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-     public jfrIniciarSesion(GestionUsuariosInt objGestionUsuariosInt, GestionAnteproyectosInt objGestionAnteproyectosInt, SeguimientoAnteproyectosInt objSeguimientoAnteproyectoInt) {
+     public jfrIniciarSesion(GestionUsuariosInt objGestionUsuariosInt, GestionAnteproyectosInt objGestionAnteproyectosInt, SeguimientoAnteproyectosInt objSeguimientoAnteproyectoInt,NotificacionImpl objNotificacionImpl) {
         this.objGestionUsuariosInt =  objGestionUsuariosInt;
         this.objGestionAnteproyectosInt = objGestionAnteproyectosInt;
         this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectoInt;
+        this.objNotificacionImpl = objNotificacionImpl;
          initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -252,7 +255,7 @@ public class jfrIniciarSesion extends javax.swing.JFrame {
         
             if (usuario.getId() != -1) {
                 if ("DIRECTOR".equals(usuario.getRol().toString())) {
-                    jfrmDirector director = new jfrmDirector(objGestionAnteproyectosInt, usuario.getId(), usuario.getUsuario());
+                    jfrmDirector director = new jfrmDirector(objGestionAnteproyectosInt,objNotificacionImpl, usuario.getId(), usuario.getUsuario());
                     director.setVisible(true);
                 } else if ("EVALUADOR".equals(usuario.getRol().toString())) {
                     jfrmEvaluador evaluador = new jfrmEvaluador(objGestionAnteproyectosInt, usuario.getId(), usuario.getUsuario(), usuario.getNombre());

@@ -64,6 +64,7 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
 
         setBorder(null);
         setTitle("Registro");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/businessregistration_signpen_negocio_inscripcio_2358.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -208,6 +209,7 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
                         }
                         objFormatosTID.setConceptoComite(Integer.parseInt(jSpinnerconcepto.getValue().toString()));
                         objFormatosTID.setObservaciones(txtObservaciones.getText());
+                        objFormatosTID.setIdCoordinador(idCoordinador);
                         try {
                             if (!validarAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()))) {
                                 if (objGestionAnteproyectosInt.remitirFormatoTID(objFormatosTID)) {
@@ -239,7 +241,8 @@ public class RegistrarFormatosTID extends javax.swing.JInternalFrame {
         try {
             objFormatoTIDs = objGestionAnteproyectosInt.consultarFormatosTID();
             for (int i = 0; i < objFormatoTIDs.size(); i++) {
-                if (objFormatoTIDs.get(i).getCodigoAnteproyecto() == idAnteproyecto && objFormatoTIDs.get(i).getIdCoordinador() == idCoordinador) {
+                if (objFormatoTIDs.get(i).getCodigoAnteproyecto() == idAnteproyecto && 
+                        objFormatoTIDs.get(i).getIdCoordinador() == idCoordinador) {
                     return true;
                 }
             }

@@ -16,14 +16,14 @@ public class FormatoTIC implements Serializable{
     private boolean estructura;
     private int conceptoDepto;
     private String Observaciones;
-    private int jefeDeto;
+    private int idJefeDeto;
 
     public FormatoTIC() {
         this.codigoAnteproyecto = -1;
         this.estructura = false;
         this.conceptoDepto = -1;
         this.Observaciones = "";
-        int jefeDeto = -1;
+        this.idJefeDeto = -1;
     }
 
     public FormatoTIC(int codigoAnteproyecto, boolean estructura, int conceptoDepto, String Observaciones) {
@@ -65,17 +65,17 @@ public class FormatoTIC implements Serializable{
         this.Observaciones = Observaciones;
     }
 
-    public int getJefeDeto() {
-        return jefeDeto;
+    public int getIdJefeDeto() {
+        return idJefeDeto;
     }
 
-    public void setJefeDeto(int jefeDeto) {
-        this.jefeDeto = jefeDeto;
+    public void setIdJefeDeto(int idJefeDeto) {
+        this.idJefeDeto = idJefeDeto;
     }
 
     @Override
     public String toString() {
-        return "FormatoTIC{" + "codigoAnteproyecto=" + codigoAnteproyecto + ", estructura=" + estructura + ", conceptoDepto=" + conceptoDepto + ", Observaciones=" + Observaciones + ", jefeDeto=" + jefeDeto + '}';
+        return "FormatoTIC{" + "codigoAnteproyecto=" + codigoAnteproyecto + ", estructura=" + estructura + ", conceptoDepto=" + conceptoDepto + ", Observaciones=" + Observaciones + ", jefeDeto=" + idJefeDeto + '}';
     }
 
     

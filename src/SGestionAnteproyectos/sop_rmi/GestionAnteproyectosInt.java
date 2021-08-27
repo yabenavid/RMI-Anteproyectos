@@ -37,4 +37,6 @@ public interface GestionAnteproyectosInt extends Remote{
     public void registrarCallback (NotificacionInt objNotificacionInt) throws RemoteException;
     
     public void hacerCallback (int codigoAnteproyecto, String evaluador1, String evaluador2) throws  RemoteException;
+    
+    public void directorActual(int idDirector)throws RemoteException;
 }

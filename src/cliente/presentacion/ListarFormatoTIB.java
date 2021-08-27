@@ -58,9 +58,7 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
                      codigoAnteproyectos.add(formatosTIB.get(i).getCodigoAnteproyecto());
                  }
              }
-         } else {
-             JOptionPane.showMessageDialog(null, "No se han registrado Formatos TIB", "Error", JOptionPane.ERROR_MESSAGE);       
-         }
+         } 
     }
     private void inicializarTablaFormatosTIB(){
         DefaultTableModel model = new DefaultTableModel();
@@ -91,7 +89,7 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
         }
         }else{
             JOptionPane.showMessageDialog(null, "No se encuetran formatos TIB Registrados", "Avertencia", JOptionPane.INFORMATION_MESSAGE);  
-           this.dispose();
+          
         }
     }
       
@@ -112,6 +110,7 @@ public class ListarFormatoTIB extends javax.swing.JInternalFrame {
 
         setBorder(null);
         setTitle("Anteproyectos Asignados");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1485476036-artboard-1_78544.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

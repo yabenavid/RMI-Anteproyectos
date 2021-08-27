@@ -22,6 +22,7 @@ public class SeguimientoAnteproyectosImpl extends UnicastRemoteObject implements
     
     public SeguimientoAnteproyectosImpl() throws RemoteException {
         super();
+        this.numerosResoluciones = new ArrayList<>();
     }
 
     @Override
@@ -29,7 +30,7 @@ public class SeguimientoAnteproyectosImpl extends UnicastRemoteObject implements
         System.out.println("\n\n Invocando a solicitar código resolución");
         String cod;
         int resultado;
-        cod = "" + numeroSecuencial3 + numeroSecuencial2 + numeroSecuencial1;
+        cod =  numeroSecuencial3 +""+ numeroSecuencial2 +""+ numeroSecuencial1;
         // Actualizando la secuencia
         actualizarNumerosSecuenciales();
         resultado = Integer.parseInt(cod);

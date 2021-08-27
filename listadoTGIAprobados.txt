@@ -1,0 +1,1 @@
+Resolucion{numeroResolucion=1, fechaRegistro=com.toedter.calendar.JDateChooser[JDateChooser,225,157,233x25,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=], codigoAnteproyecto=20211000}

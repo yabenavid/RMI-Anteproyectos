@@ -69,6 +69,7 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
         jSpinnerConcepto = new javax.swing.JSpinner();
 
         setTitle("Registro");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/businessregistration_signpen_negocio_inscripcio_2358.png"))); // NOI18N
         setPreferredSize(new java.awt.Dimension(560, 467));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -228,8 +229,6 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         jSpinnerConcepto.setValue(0);
-        txtConcepto1.setText("");
-        txtConcepto2.setText("");
         txtObservaciones.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
  private boolean validarAnteproyecto(int idAnteproyecto) {
@@ -237,7 +236,7 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
         try {
             objFormatoTICs = objGestionAnteproyectosInt.consultarFormatosTIC();
             for (int i = 0; i < objFormatoTICs.size(); i++) {
-                if (objFormatoTICs.get(i).getCodigoAnteproyecto() == idAnteproyecto && objFormatoTICs.get(i).getJefeDeto()== idJefeDepto) {
+                if (objFormatoTICs.get(i).getCodigoAnteproyecto() == idAnteproyecto) {
                         return  true;
                 }
             }
@@ -266,7 +265,7 @@ public class RegistrarFormatoTIC extends javax.swing.JInternalFrame {
                         }
                         objFormatosTIC.setConceptoDepto(Integer.parseInt(jSpinnerConcepto.getValue().toString()));
                         objFormatosTIC.setObservaciones(txtObservaciones.getText());
-                        objFormatosTIC.setJefeDeto(idJefeDepto);
+                        objFormatosTIC.setIdJefeDeto(idJefeDepto);
                         try {
                             if (!validarAnteproyecto(Integer.parseInt(cbxCodigoAnteproyectos.getSelectedItem().toString()))) {
                                 if (validarConceptos()) {

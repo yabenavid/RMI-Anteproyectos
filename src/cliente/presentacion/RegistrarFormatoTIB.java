@@ -71,6 +71,7 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
 
         setBorder(null);
         setTitle("Registro");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/businessregistration_signpen_negocio_inscripcio_2358.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,6 +102,8 @@ public class RegistrarFormatoTIB extends javax.swing.JInternalFrame {
                 bntGuardarActionPerformed(evt);
             }
         });
+
+        dtcFechaEvalucion.setDateFormatString("dd/MM/yyyy");
 
         cbxCodigoAnteproyectos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 

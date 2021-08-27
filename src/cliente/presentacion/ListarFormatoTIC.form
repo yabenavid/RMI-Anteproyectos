@@ -6,6 +6,9 @@
       <Border info="null"/>
     </Property>
     <Property name="title" type="java.lang.String" value="Ateproyectos"/>
+    <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+      <Image iconType="3" name="/Imagenes/1485476036-artboard-1_78544.png"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

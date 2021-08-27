@@ -53,6 +53,7 @@ public class ListarFormtosAsigEvaluador extends javax.swing.JInternalFrame {
 
         setBorder(null);
         setTitle("Formatos Asignados");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1485476036-artboard-1_78544.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

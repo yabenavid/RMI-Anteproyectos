@@ -33,7 +33,8 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
     private int periodoActual = 1;
     private int numeroSecuencial1 = 0, numeroSecuencial2 = 0, numeroSecuencial3 = 0;
 
-
+    private int directorActual;
+    
     public GestionAnteproyectosImpl() throws RemoteException {
         super();
         formatosTIA = new ArrayList<>();
@@ -247,18 +248,25 @@ public class GestionAnteproyectosImpl extends UnicastRemoteObject implements Ges
     }
     @Override
     public void hacerCallback (int codigoAnteproyecto, String evaluador1, String evaluador2) throws  RemoteException{
-         System.out.println("\n\n Invocando Hacer Callback");
-         NotificacionDTO objNotificacionDTO = new NotificacionDTO(codigoAnteproyecto, evaluador1, evaluador2);
-         this.objNotificacionInt.enviarNotificacion(objNotificacionDTO);
+        System.out.println("\n\n Invocando Hacer Callback");
+        ArrayList<FormatoTIA> formatoTIAs = consultarFormatosTIA();
+        for (int i = 0; i < formatoTIAs.size(); i++) {
+            if (formatoTIAs.get(i).getCodigoAnteproyecto() == codigoAnteproyecto && formatoTIAs.get(i).getIdDirector() ==directorActual ) {
+                NotificacionDTO objNotificacionDTO = new NotificacionDTO(codigoAnteproyecto, evaluador1, evaluador2);
+                this.objNotificacionInt.enviarNotificacion(objNotificacionDTO);
+            }
+        }
     }
     public void consultarReferenciaRemotaSeguimiento(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
         System.out.println(" ");
         System.out.println("Desde consultarReferenciaRemotaDeSegumiento()...");
         this.objSeguimiento = (SeguimientoAnteproyectosInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoSeguimiento");
            }
-//    public void consultarReferenciaRemotaNotificacion(String direccionIpRMIRegistry, int numPuertoRMIRegistry) {
-//        System.out.println(" ");
-//        System.out.println("Desde consultarReferenciaRemotaDeNotificacion()...");
-//        this.objNotificacionInt = (NotificacionInt) UtilidadesRegistroC.obtenerObjRemoto(direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoNotificacion");
-//    }
+    
+    @Override
+    public void directorActual(int idDirector)throws RemoteException{
+        System.out.println("Desde directorActual()...");
+        directorActual = idDirector;
+    }
+
 }

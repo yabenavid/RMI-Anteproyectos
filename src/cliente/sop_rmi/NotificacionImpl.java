@@ -8,6 +8,7 @@ package cliente.sop_rmi;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import SGestionAnteproyectos.dto.NotificacionDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,8 @@ public class NotificacionImpl extends UnicastRemoteObject implements Notificacio
         System.out.println("** Desde enviarNotificacion() ... ");
         String msg = "El anteproyecto con codigo: " + objNotificacion.getCodigoAnteproyecto() + " ha sido aprobado por los evaluadores: "
                 + objNotificacion.getNombreEvaludor1() + " " + objNotificacion.getNombreEvaludor2();
+        JOptionPane.showMessageDialog(null, msg, "Avertencia", JOptionPane.INFORMATION_MESSAGE);  
+    
         return msg;
     }
 }

@@ -68,6 +68,7 @@ public class RegistrarFormatoTIA extends javax.swing.JInternalFrame {
 
         setBorder(null);
         setTitle("Registro");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/businessregistration_signpen_negocio_inscripcio_2358.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

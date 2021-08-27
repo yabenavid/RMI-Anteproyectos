@@ -55,10 +55,10 @@ public class Conexion extends javax.swing.JFrame {
 
         pnlConexion.setBackground(new java.awt.Color(0, 102, 153));
         pnlConexion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Conexion Servidor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        pnlConexion.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        pnlConexion.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         pnlConexion.setLayout(new java.awt.GridLayout(5, 1));
 
-        lblDirIp.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblDirIp.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         lblDirIp.setForeground(new java.awt.Color(255, 255, 255));
         lblDirIp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDirIp.setText("Cuál es el la dirección ip donde se encuentra  el n_s");
@@ -68,7 +68,7 @@ public class Conexion extends javax.swing.JFrame {
         txtIp.setText("localhost");
         pnlConexion.add(txtIp);
 
-        lblNumPuerto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblNumPuerto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         lblNumPuerto.setForeground(new java.awt.Color(255, 255, 255));
         lblNumPuerto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumPuerto.setText("Cuál es el número de puerto por el cual escucha el n_s");
@@ -80,7 +80,8 @@ public class Conexion extends javax.swing.JFrame {
 
         pnlBoton.setLayout(new java.awt.GridBagLayout());
 
-        btnConectar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btnConectar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnConectar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/socket.png"))); // NOI18N
         btnConectar.setText("Conectar");
         btnConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -1,8 +1,8 @@
-FormatoTIA{codigoAnteproyecto=20211000, nombrePrograma=eeeej, tituloAnteproyecto=hhhjj, nombreEstudiante1=jjjjj, codigoEstudiante1=7777, nombreEstudiante2=888, codigoEstudiante2=777, nombredirector=888, nombreCoDirector=77, obetivosAnteproyecto=hhg, identificacionEvaluador1=6563, identificacionEvaluador2=457755, idDirector=322}
+FormatoTIA{codigoAnteproyecto=20211001, nombrePrograma=ghgf, tituloAnteproyecto=fdgfv, nombreEstudiante1=vfvf, codigoEstudiante1=24, nombreEstudiante2=fvv, codigoEstudiante2=5344, nombredirector=dsfs, nombreCoDirector=cvd, obetivosAnteproyecto=cd, identificacionEvaluador1=7464, identificacionEvaluador2=55, idDirector=4435}
 
-FormatoTIB{codigoAnteproyecto=20211000, concepto=1, observaciones=obs, fechaEvaluacion=Tue Aug 10 22:53:16 COT 2021, nombreEvaluador=jhjj, identificacionEvaluador=6563}
+FormatoTIB{codigoAnteproyecto=20211001, concepto=1, observaciones=vfff, fechaEvaluacion=Thu Aug 26 00:43:22 COT 2021, nombreEvaluador=ddd, identificacionEvaluador=55}
 
-FormatoTIB{codigoAnteproyecto=20211000, concepto=1, observaciones=obs, fechaEvaluacion=Tue Aug 17 00:00:00 COT 2021, nombreEvaluador=snds, identificacionEvaluador=457755}
+FormatoTIB{codigoAnteproyecto=20211001, concepto=1, observaciones=bog, fechaEvaluacion=Wed Aug 25 00:43:41 COT 2021, nombreEvaluador=hdnvbd, identificacionEvaluador=7464}
 
-FormatoTIC{codigoAnteproyecto=20211000, estructura=true, conceptoDepto=1, Observaciones=obs, jefeDeto=667}
+FormatoTIC{codigoAnteproyecto=20211001, estructura=true, conceptoDepto=1, Observaciones=obs , jefeDeto=8667}
 

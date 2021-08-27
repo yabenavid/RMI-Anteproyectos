@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,6 +59,7 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
 
         setBorder(null);
         setTitle("Ateproyectos");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1485476036-artboard-1_78544.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,13 +133,16 @@ public class ListarFormatoTIC extends javax.swing.JInternalFrame {
          } catch (RemoteException ex) {
              Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
          }
+         if(!formatosTIC.isEmpty()){
          for (int i = 0; i < formatosTIC.size(); i++) {
              FormatoTIC objFormatoTIC = formatosTIC.get(i);
-             if (objFormatoTIC.getJefeDeto() == idJefeDepto) {
+             if (objFormatoTIC.getIdJefeDeto() == idJefeDepto) {
                  String[] fila = {String.valueOf(objFormatoTIC.getCodigoAnteproyecto()), String.valueOf(objFormatoTIC.getEstructura()), String.valueOf(objFormatoTIC.getConceptoDepto()), objFormatoTIC.getObservaciones() + ""};
                  model.addRow(fila);
              }
-
+         }
+         }else{
+           JOptionPane.showMessageDialog(null, "No ha Registrado formatos TIC", "Error", JOptionPane.ERROR_MESSAGE);       
          }
     }
 

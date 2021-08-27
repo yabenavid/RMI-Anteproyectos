@@ -32,7 +32,7 @@ public class jfrmDecano extends javax.swing.JFrame {
     public jfrmDecano(GestionAnteproyectosInt objGestionAnteproyectosInt, SeguimientoAnteproyectosInt objSeguimientoAnteproyectosInt, int idDecano, String usuario) {
         initComponents();
         this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectosInt;
-        this.objSeguimientoAnteproyectosInt = objSeguimientoAnteproyectosInt;
+        this.obGestionAnteproyectosInt = objGestionAnteproyectosInt;
         this.idDecano = idDecano;
         this.usuario = usuario;
         this.setLocationRelativeTo(null);
@@ -228,11 +228,11 @@ public class jfrmDecano extends javax.swing.JFrame {
 
     private void btnRemitirResolucionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemitirResolucionMouseClicked
 
-        pnl1.removeAll();
-        pnl1.repaint();
-        RemitirResolucion registrar;
+        
         try {
-            registrar = new RemitirResolucion(objSeguimientoAnteproyectosInt, obGestionAnteproyectosInt);
+            pnl1.removeAll();
+            pnl1.repaint();
+            RemitirResolucion  registrar = new RemitirResolucion(objSeguimientoAnteproyectosInt, obGestionAnteproyectosInt);
             pnl1.add(registrar);
             registrar.show();
         } catch (RemoteException ex) {
@@ -244,7 +244,8 @@ public class jfrmDecano extends javax.swing.JFrame {
     private void btnHistorialTGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialTGIMouseClicked
 
         try {
-             pnl1.removeAll();
+            
+            pnl1.removeAll();
             pnl1.repaint();
             
             String historial = objSeguimientoAnteproyectosInt.consultarFormatos();

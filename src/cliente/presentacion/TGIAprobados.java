@@ -5,6 +5,11 @@
  */
 package cliente.presentacion;
 
+import SGestionAnteproyectos.dto.FormatoTIB;
+import cliente.utilidades.UtilidadesGenerales;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author YENNYFER
@@ -15,10 +20,14 @@ public class TGIAprobados extends javax.swing.JInternalFrame {
      * Creates new form TGIAprobados
      */
     private String tgiAprobados;
+    private UtilidadesGenerales utilidadesGenerales;
+    
     public TGIAprobados(String tgiAprobados) {
         this.tgiAprobados = tgiAprobados;
         initComponents();
-        txtAprobados.setText(tgiAprobados);
+        jTextArea1.setText(tgiAprobados);
+        inicializarTablaFormatosTIB();
+        splitTGIAprobados();
     }
 
     /**
@@ -31,24 +40,51 @@ public class TGIAprobados extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableTGIAprobados = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtAprobados = new javax.swing.JTextArea();
+        jTextArea1 = new javax.swing.JTextArea();
+
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1491254081-19document-list_82931.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtAprobados.setColumns(20);
-        txtAprobados.setRows(5);
-        jScrollPane1.setViewportView(txtAprobados);
+        jTableTGIAprobados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableTGIAprobados);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -64,11 +100,40 @@ public class TGIAprobados extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void splitTGIAprobados() {
+        String numeroResolucion="", fechaRegistro="", codigoAnteproyect="";
+        
+        String[] vHistorial = tgiAprobados.split("\\{");
+        for(int i =0; i<vHistorial.length; i++){
+             String[] varHistorial = vHistorial[1].split(",");
+             
+             numeroResolucion = varHistorial[0].split("=")[1];
+             fechaRegistro = varHistorial[1].split("=")[1];
+             codigoAnteproyect = varHistorial[2].split("=")[1];
+             llenarTablaTGIAprobados(numeroResolucion, fechaRegistro, codigoAnteproyect);
+        }
+        
+    }
+   private void inicializarTablaFormatosTIB(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Número Resolución");
+        model.addColumn("Fecha  Registro");
+        model.addColumn("Código Anteproyecto");    
+        this.jTableTGIAprobados.setModel(model);
+    }
+   private void llenarTablaTGIAprobados(String numeroResolucion, String fechaRegistro, String codigoanteProyecto){
+        
+        DefaultTableModel model = (DefaultTableModel) this.jTableTGIAprobados.getModel();
+        utilidadesGenerales.limpiarTabla(this.jTableTGIAprobados);
 
-
+        String[] fila = {numeroResolucion, fechaRegistro, codigoanteProyecto + ""};
+        model.addRow(fila);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtAprobados;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableTGIAprobados;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

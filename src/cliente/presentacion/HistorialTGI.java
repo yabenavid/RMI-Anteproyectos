@@ -5,6 +5,17 @@
  */
 package cliente.presentacion;
 
+import SGestionAnteproyectos.dto.FormatoTIA;
+import SGestionAnteproyectos.dto.FormatoTIB;
+import SGestionAnteproyectos.dto.FormatoTIC;
+import cliente.utilidades.UtilidadesGenerales;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author YENNYFER
@@ -15,11 +26,16 @@ public class HistorialTGI extends javax.swing.JInternalFrame {
      * Creates new form HistorialTGI
      */
     private String historial;
+    private UtilidadesGenerales utilidadesGenerales;
+    
     public HistorialTGI(String historial) {
         this.historial = historial;
-        
+        this.utilidadesGenerales = new UtilidadesGenerales();      
         initComponents();
-        txtHistorial.setText(historial);
+        inicializarTablaFormatosTIA();
+        inicializarTablaFormatosTIB();
+        inicializarTablaFormatosTIC();
+       splitHistorial();
     }
 
     /**
@@ -32,14 +48,67 @@ public class HistorialTGI extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtHistorial = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableFormatosTIB = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableFormatosTIA = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableFormatosTIC = new javax.swing.JTable();
+
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1485476036-artboard-1_78544.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtHistorial.setColumns(20);
-        txtHistorial.setRows(5);
-        jScrollPane1.setViewportView(txtHistorial);
+        jTableFormatosTIB.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableFormatosTIB);
+
+        jTableFormatosTIA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableFormatosTIA);
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setText("Formatos TIA:");
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setText("Formatos TIB:");
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setText("FormatosTIC:");
+
+        jTableFormatosTIC.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTableFormatosTIC);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -47,22 +116,46 @@ public class HistorialTGI extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 8, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,11 +164,146 @@ public class HistorialTGI extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void splitHistorial() {
+     
+        ArrayList<FormatoTIB> objFormatoTIB = new ArrayList<>();
+        ArrayList<FormatoTIA> objFormatoTIAs = new ArrayList<>();
+        ArrayList<FormatoTIC> objFormatoTICs = new ArrayList<>();
+        
+       String[] vHistorial = historial.split("\\}");
+       
+       
+        for(int i =0; i<vHistorial.length; i++){
+            String[] varHistorial = vHistorial[i].split("\\{");
+            
+            if(vHistorial[i].contains("FormatoTIA")){
+                
+                FormatoTIA formatoTIA = new FormatoTIA();
+                String v = varHistorial[1];
+                String[] a = v.split(",");
+                formatoTIA.setCodigoAnteproyecto(Integer.parseInt(a[0].split("=")[1]));
+                formatoTIA.setNombrePrograma(a[1].split("=")[1]);
+                formatoTIA.setTituloAnteproyecto(a[2].split("=")[1]);
+                formatoTIA.setNombreEstudiante1(a[3].split("=")[1]);
+                formatoTIA.setCodigoEstudiante1(Integer.parseInt(a[4].split("=")[1]));
+                formatoTIA.setNombreEstudiante2(a[5].split("=")[1]);
+                formatoTIA.setCodigoEstudiante2(Integer.parseInt(a[6].split("=")[1]));
+                formatoTIA.setNombredirector(a[7].split("=")[1]);
+                formatoTIA.setNombreCoDirector(a[8].split("=")[1]);
+                formatoTIA.setObetivosAnteproyecto(a[9].split("=")[1]);
+                formatoTIA.setIdentificacionEvaluador1(Integer.parseInt(a[10].split("=")[1]));
+                formatoTIA.setIdentificacionEvaluador2(Integer.parseInt(a[11].split("=")[1]));
+                formatoTIA.setIdDirector(Integer.parseInt(a[12].split("=")[1]));
+                
+                objFormatoTIAs.add(formatoTIA);
+            
+            }else if (vHistorial[i].contains("FormatoTIB")){
+                FormatoTIB formatoTIB = new  FormatoTIB();
+                String v = varHistorial[1];
+                String[] a = v.split(",");
+                 
+                formatoTIB.setCodigoAnteproyecto(Integer.parseInt(a[0].split("=")[1]));
+                formatoTIB.setConcepto(Integer.parseInt(a[1].split("=")[1]));
+                formatoTIB.setObservaciones(a[2].split("=")[1]);
+                formatoTIB.setFechaEvaluacion(a[3].split("=")[1]);
+                formatoTIB.setNombreEvaluador(a[4].split("=")[1]);
+                formatoTIB.setIdentificacionEvaluador(Integer.parseInt(a[5].split("=")[1]));
+                objFormatoTIB.add(formatoTIB);
+                
+            }else if (vHistorial[i].contains("FormatoTIC")){
+                FormatoTIC formatoTIC = new FormatoTIC();
+                String v = varHistorial[1];
+                String[] a = v.split(",");
+                
+                formatoTIC.setCodigoAnteproyecto(Integer.parseInt(a[0].split("=")[1]));
+                formatoTIC.setEstructura(Boolean.parseBoolean(a[1].split("=")[1]));
+                formatoTIC.setConceptoDepto(Integer.parseInt(a[2].split("=")[1]));
+                formatoTIC.setObservaciones(a[3].split("=")[1]);
+                formatoTIC.setIdJefeDeto(Integer.parseInt(a[4].split("=")[1]));
+                objFormatoTICs.add(formatoTIC);
+            }
+        }
+        llenarTablaFormatosTIB(objFormatoTIAs, objFormatoTIB, objFormatoTICs);
+    }
+     
+    private void inicializarTablaFormatosTIA(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Código Anteproyecto");
+        model.addColumn("Nombre Programa");
+        model.addColumn("Titulo Anteproyecto"); 
+        model.addColumn("Nombre Estudiante 1");        
+        model.addColumn("Código Estudiante 1"); 
+        model.addColumn("Nombre Estudiante 2");        
+        model.addColumn("Código Estudiante 2"); 
+        model.addColumn("Nombre Director");        
+        model.addColumn("Nombre Co-Director"); 
+        model.addColumn("Objetivos");         
+        model.addColumn("Identificación Evaluador 1"); 
+        model.addColumn("Identificación Evaluador 2"); 
+        model.addColumn("Identificación Director");  
+        
+        this.jTableFormatosTIA.setModel(model);
+    }
+      private void inicializarTablaFormatosTIB(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Código Anteproyecto");
+        model.addColumn("Concepto");
+        model.addColumn("Observaciones"); 
+        model.addColumn("Fecha evaluación");        
+        model.addColumn("Nombre evaluador");
+        model.addColumn("Identificación evaluador");    
+        this.jTableFormatosTIB.setModel(model);
+    }
+      private void inicializarTablaFormatosTIC(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Código Anteproyecto");
+        model.addColumn("Estructura"); 
+        model.addColumn("Concepto Dpto"); 
+        model.addColumn("Observaciones");      
+        model.addColumn("Jefe Departamento");
+        this.jTableFormatosTIC.setModel(model);
+    }
+      private void llenarTablaFormatosTIB (ArrayList<FormatoTIA> formatoTIAs, ArrayList<FormatoTIB> formatoTIBs, ArrayList<FormatoTIC> formatoTICs) {
 
+        DefaultTableModel modelTIA = (DefaultTableModel) this.jTableFormatosTIA.getModel();
+        utilidadesGenerales.limpiarTabla(this.jTableFormatosTIA);
+
+        DefaultTableModel modelTIB = (DefaultTableModel) this.jTableFormatosTIB.getModel();
+        utilidadesGenerales.limpiarTabla(this.jTableFormatosTIB);
+
+        DefaultTableModel modelTIC = (DefaultTableModel) this.jTableFormatosTIC.getModel();
+        utilidadesGenerales.limpiarTabla(this.jTableFormatosTIC);
+
+        for (int i = 0; i < formatoTIAs.size(); i++) {
+             FormatoTIA objFormatoTIA = formatoTIAs.get(i);
+             String[] fila = {String.valueOf(objFormatoTIA.getCodigoAnteproyecto()), objFormatoTIA.getNombrePrograma(),objFormatoTIA.getTituloAnteproyecto(), objFormatoTIA.getNombreEstudiante1(),String.valueOf(objFormatoTIA.getCodigoEstudiante1()), objFormatoTIA.getNombreEstudiante2(),String.valueOf(objFormatoTIA.getCodigoEstudiante2()), 
+                 objFormatoTIA.getNombredirector(),objFormatoTIA.getNombreCoDirector(),objFormatoTIA.getObetivosAnteproyecto(),String.valueOf(objFormatoTIA.getIdentificacionEvaluador1()), String.valueOf(objFormatoTIA.getIdentificacionEvaluador2()),String.valueOf(objFormatoTIA.getIdDirector()) + ""};
+             modelTIA.addRow(fila);
+         
+        }
+        for (int i = 0; i < formatoTIBs.size(); i++) {
+            FormatoTIB objFormatoTIB = formatoTIBs.get(i);
+            String[] fila = {String.valueOf(objFormatoTIB.getCodigoAnteproyecto()),String.valueOf(objFormatoTIB.getConcepto()), objFormatoTIB.getObservaciones(), objFormatoTIB.getFechaEvaluacion(), objFormatoTIB.getNombreEvaluador(), objFormatoTIB.getIdentificacionEvaluador() + ""};
+            modelTIB.addRow(fila);
+        }
+        
+         for (int i = 0; i <formatoTICs.size(); i++) {
+            FormatoTIC objFormatoTIC = formatoTICs.get(i);
+            String[] fila = {String.valueOf(objFormatoTIC.getCodigoAnteproyecto()),String.valueOf(objFormatoTIC.getEstructura()),String.valueOf(objFormatoTIC.getConceptoDepto()),objFormatoTIC.getObservaciones(), objFormatoTIC.getIdJefeDeto() + ""};
+            modelTIC.addRow(fila);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtHistorial;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTableFormatosTIA;
+    private javax.swing.JTable jTableFormatosTIB;
+    private javax.swing.JTable jTableFormatosTIC;
     // End of variables declaration//GEN-END:variables
 }
